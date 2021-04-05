@@ -7,10 +7,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
+import {SharedModule} from './shared/shared.module';
+import {EShopAdminComponent} from './admin-area/components/eshop-admin/eshop-admin.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EShopAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -20,6 +23,7 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
+    SharedModule,
     ToastrModule.forRoot()
   ],
   providers: [],
