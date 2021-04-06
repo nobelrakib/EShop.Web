@@ -1,20 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EShopAdminComponent } from './admin-area/components/eshop-admin/eshop-admin.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
   {
-    path: 'admin', component: EShopAdminComponent,
-    children: [
-      // { path: 'dashboard', loadChildren: './pages/dashboard/dashboard.module#DashboardModule', canActivate: [AuthGuard] },
-    ],
+    path: 'admin',
+    loadChildren: () => import('./admin-area/admin-area.module').then(x => x.AdminModule)
   },
-  // {
-  //   path: '', component: EShopComponent,
-  //   children: [
+  {
+    path: '', component: HomeComponent,
+    children: [
 
-  //   ]
-  // }
+    ]
+  },
+  {
+    path: '**',
+    redirectTo: ''
+  }
 ];
 
 @NgModule({

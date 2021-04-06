@@ -8,12 +8,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 import {SharedModule} from './shared/shared.module';
-import {EShopAdminComponent} from './admin-area/components/eshop-admin/eshop-admin.component';
+import { HomeComponent } from './pages/home/home.component';
+import { AuthComponent } from './pages/auth/auth.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EShopAdminComponent
+    HomeComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
