@@ -10,6 +10,13 @@ import { AppComponent } from './app.component';
 import {SharedModule} from './shared/shared.module';
 import { HomeComponent } from './pages/home/home.component';
 import { AuthComponent } from './pages/auth/auth.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
+}
 
 @NgModule({
   declarations: [
@@ -26,7 +33,20 @@ import { AuthComponent } from './pages/auth/auth.component';
     HttpClientModule,
     NgbModule,
     SharedModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      },
+    }),
+    // // for HttpClient use:
+    // LoadingBarHttpClientModule,
+    // // for Router use:
+    // LoadingBarRouterModule,
+    // // for Core use:
+    // LoadingBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
