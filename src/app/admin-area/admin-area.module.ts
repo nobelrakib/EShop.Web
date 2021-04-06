@@ -1,3 +1,4 @@
+import { ContentComponent } from './components/content/content.component';
 import { SearchComponent } from './shared/components/header/elements/search/search.component';
 import { TapToTopComponent } from './shared/components/tap-to-top/tap-to-top.component';
 import { FeatherIconsComponent } from './shared/components/feather-icons/feather-icons.component';
@@ -36,7 +37,8 @@ import { LayoutService } from './shared/services/layout.service';
         MyAccountComponent,
         FeatherIconsComponent,
         TapToTopComponent,
-        SearchComponent
+        SearchComponent,
+        ContentComponent
     ],
     imports: [
         AdminRoutingModule,

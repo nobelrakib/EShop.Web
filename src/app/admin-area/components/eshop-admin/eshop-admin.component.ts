@@ -9,22 +9,8 @@ import { NavService } from '../../shared/services/nav.service';
   styleUrls: ['./eshop-admin.component.scss'],
 })
 
-export class EShopAdminComponent implements OnInit, AfterViewInit  {
+export class EShopAdminComponent implements OnInit  {
 
-  constructor(public navServices: NavService, 
-    public layout: LayoutService) { }
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      feather.replace();
-    });
-  }
-
-  public getRouterOutletState(outlet) {
-    return outlet.isActivated ? outlet.activatedRoute : '';
-  }
-  
-  ngOnInit() {
-    
+  ngOnInit(): void {
   }
 }
