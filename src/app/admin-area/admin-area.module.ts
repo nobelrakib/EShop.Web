@@ -1,6 +1,5 @@
 import { FeatherIconsComponent } from './shared/components/feather-icons/feather-icons.component';
 import { ContentComponent } from './components/content/content.component';
-import { SearchComponent } from './shared/components/header/elements/search/search.component';
 import { TapToTopComponent } from './shared/components/tap-to-top/tap-to-top.component';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
@@ -22,7 +21,6 @@ import { LayoutService } from './shared/services/layout.service';
         FooterComponent,
         SidebarComponent,
         TapToTopComponent,
-        SearchComponent,
         ContentComponent,
         FeatherIconsComponent
     ],
