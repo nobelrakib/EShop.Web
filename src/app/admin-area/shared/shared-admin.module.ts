@@ -1,6 +1,5 @@
 import { FeatherIconsComponent } from './components/feather-icons/feather-icons.component';
 import { ContentComponent } from '../components/content/content.component';
-import { TapToTopComponent } from './components/tap-to-top/tap-to-top.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from "@angular/core";
 import { FooterComponent } from './components/footer/footer.component';
@@ -15,7 +14,6 @@ import { TranslateModule } from '@ngx-translate/core';
        HeaderComponent,
         FooterComponent,
         SidebarComponent,
-        TapToTopComponent,
         ContentComponent,
         FeatherIconsComponent
     ],
@@ -30,7 +28,6 @@ import { TranslateModule } from '@ngx-translate/core';
         HeaderComponent,
         FooterComponent,
         SidebarComponent,
-        TapToTopComponent,
         ContentComponent,
         FeatherIconsComponent,
         CommonModule,
