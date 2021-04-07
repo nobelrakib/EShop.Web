@@ -1,13 +1,6 @@
+import { EShopAdminComponent } from './../components/eshop-admin/eshop-admin.component';
 import { TapToTopComponent } from './components/tap-to-top/tap-to-top.component';
-import { FeatherIconsComponent } from './components/feather-icons/feather-icons.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MegaMenuComponent } from './components/header/elements/mega-menu/mega-menu.component';
-import { NotificationComponent } from './components/header/elements/notification/notification.component';
-import { MyAccountComponent } from './components/header/elements/my-account/my-account.component';
-import { MessageBoxComponent } from './components/header/elements/message-box/message-box.component';
-import { LanguagesComponent } from './components/header/elements/languages/languages.component';
-import { CartComponent } from './components/header/elements/cart/cart.component';
-import { BookmarkComponent } from './components/header/elements/bookmark/bookmark.component';
 import { NgModule } from "@angular/core";
 import { FooterComponent } from '../shared/components/footer/footer.component';
 import { HeaderComponent } from '../shared/components/header/header.component';
@@ -20,30 +13,13 @@ import { LayoutService } from './services/layout.service';
 
 @NgModule({
     declarations: [
-        HeaderComponent,
-        FooterComponent,
-        SidebarComponent,
-        MegaMenuComponent,
-        LanguagesComponent,
-        NotificationComponent,
-        BookmarkComponent,
-        CartComponent,
-        MessageBoxComponent,
-        MyAccountComponent,
-        FeatherIconsComponent,
-        TapToTopComponent,
+       EShopAdminComponent
     ],
     imports: [
-        CommonModule,
-        RouterModule,
-        FormsModule,
-        ReactiveFormsModule,
-        TranslateModule
+       
     ],
       exports: [
-        FormsModule,
-        ReactiveFormsModule,
-        TranslateModule
+        EShopAdminComponent
       ],
     entryComponents: []
 })

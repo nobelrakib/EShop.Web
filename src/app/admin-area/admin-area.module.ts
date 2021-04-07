@@ -1,14 +1,7 @@
+import { FeatherIconsComponent } from './shared/components/feather-icons/feather-icons.component';
 import { ContentComponent } from './components/content/content.component';
 import { SearchComponent } from './shared/components/header/elements/search/search.component';
 import { TapToTopComponent } from './shared/components/tap-to-top/tap-to-top.component';
-import { FeatherIconsComponent } from './shared/components/feather-icons/feather-icons.component';
-import { MyAccountComponent } from './shared/components/header/elements/my-account/my-account.component';
-import { MessageBoxComponent } from './shared/components/header/elements/message-box/message-box.component';
-import { CartComponent } from './shared/components/header/elements/cart/cart.component';
-import { NotificationComponent } from './shared/components/header/elements/notification/notification.component';
-import { BookmarkComponent } from './shared/components/header/elements/bookmark/bookmark.component';
-import { LanguagesComponent } from './shared/components/header/elements/languages/languages.component';
-import { MegaMenuComponent } from './shared/components/header/elements/mega-menu/mega-menu.component';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { HeaderComponent } from './shared/components/header/header.component';
@@ -24,21 +17,14 @@ import { NavService } from './shared/services/nav.service';
 import { LayoutService } from './shared/services/layout.service';
 
 @NgModule({
-    declarations: [EShopAdminComponent,
+    declarations: [
         HeaderComponent,
         FooterComponent,
         SidebarComponent,
-        MegaMenuComponent,
-        LanguagesComponent,
-        NotificationComponent,
-        BookmarkComponent,
-        CartComponent,
-        MessageBoxComponent,
-        MyAccountComponent,
-        FeatherIconsComponent,
         TapToTopComponent,
         SearchComponent,
-        ContentComponent
+        ContentComponent,
+        FeatherIconsComponent
     ],
     imports: [
         AdminRoutingModule,
