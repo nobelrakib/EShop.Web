@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { of, ReplaySubject } from 'rxjs';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 import { IUser } from '../shared/models/user';
 
 @Injectable({
@@ -37,7 +37,7 @@ export class AccountService {
   }
 
   login(values: any) {
-    return this.http.post<IUser>(this.baseUrl + 'account/login', values).pipe(
+    return this.http.post<IUser>(this.baseUrl + 'Auth/Login', values).pipe(
       map((user: IUser) => {
         if (user) {
           localStorage.setItem('token', user.token);

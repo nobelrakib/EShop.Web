@@ -12,7 +12,7 @@ export const environment = {
     storageBucket: "Your StorageBucket url",
     messagingSenderId: "Your Sender Id"
   },
-  apiUrl: 'https://localhost:5001/api/'
+  apiUrl: 'https://localhost:44328/api/'
 };
 /*
  * For easier debugging in development mode, you can import the following file

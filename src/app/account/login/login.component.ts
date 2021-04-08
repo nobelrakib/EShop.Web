@@ -1,6 +1,7 @@
 import { AccountService } from './../account.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   returnUrl: string;
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private toastrService : ToastrService) { }
 
   ngOnInit(): void {
     this.createLoginForm();
@@ -28,7 +29,9 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.accountService.login(this.loginForm.value).subscribe(() => {
+      this.toastrService.success("Login Successfully");
     }, error => {
+      this.toastrService.error("Login Failed");
       console.log(error);
     })
   }
