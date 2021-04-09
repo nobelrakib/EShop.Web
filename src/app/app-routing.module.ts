@@ -9,7 +9,7 @@ const routes: Routes = [
     loadChildren: () => import('./admin-area/admin-area.module').then(x => x.AdminModule)
   },
   {
-    path: 'account', loadChildren: () => import('./account/account.module').then(mod => mod.AccountModule),
+    path: 'account', loadChildren: () => import('./pages/account/account.module').then(mod => mod.AccountModule),
     data: { breadcrumb: {skip: true} }
   },
   {

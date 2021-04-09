@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { of, ReplaySubject } from 'rxjs';
-import { environment } from '../../environments/environment';
-import { IUser } from '../shared/models/user';
+import { environment } from '../../../environments/environment';
+import { IUser } from '../../shared/models/user';
 
 @Injectable({
   providedIn: 'root'
