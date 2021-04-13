@@ -17,7 +17,7 @@ export class RoleAddComponent implements OnInit {
     { id: 2, name: 'Angular.com' },
     { id: 3, name: 'Tutsmake.com' }
   ];
-  permissionList:IPermission[] =[];
+  permissions:IPermission[] =[];
   
   constructor(private formBuilder: FormBuilder,
     private PermissionService:PermissionService,private roleService:RoleService) {
@@ -26,32 +26,34 @@ export class RoleAddComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       rolename: ['', Validators.required],
-      permissionList: this.formBuilder.array([], [Validators.required])
+      permissions: this.formBuilder.array([], [Validators.required])
     })
     this.PermissionService.getPermissions().subscribe(response=>{
-         this.permissionList=[...response]
+         this.permissions=[...response]
         // console.log(response)
     })
     // console.log(this.permissionList)
   }
     
   onCheckboxChange(e) {
-    const selectedPermission: FormArray = this.form.get('permissionList') as FormArray;
+    const selectedPermission: FormArray = this.form.get('permissions') as FormArray;
    // console.log(this.form)
     if (e.target.checked) {
-      selectedPermission.push(new FormControl(e.target.value));
+      selectedPermission.push(new FormControl( {id: e.target.value}))
+    
     } else {
-       const index = selectedPermission.controls.findIndex(x => x.value === e.target.value);
+       const index = selectedPermission.controls.findIndex(x => x.value["id"] === e.target.value);
        selectedPermission.removeAt(index);
     }
-    console.log(this.form.get('permissionList').value)
+    console.log(this.form.get('permissions'))
+   // console.log(this.form.value);
   }
     
   submit(){
     this.roleService.addRoles(this.form.value).subscribe(res=>{
 
     })
-    console.log(this.permissionList);
+    console.log(this.permissions);
   }
 
 }

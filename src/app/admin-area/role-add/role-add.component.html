@@ -12,7 +12,7 @@
             </div>
           </div>
             <label for="Permission">Permission:</label>
-            <div *ngFor="let permission of permissionList">
+            <div *ngFor="let permission of permissions">
               <label>
                 <input type="checkbox" [value]="permission.id" (change)="onCheckboxChange($event)" />
                 {{permission.permissionName}}
