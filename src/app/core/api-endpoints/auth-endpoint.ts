@@ -1,6 +1,5 @@
 import { ApiConstant } from './base-endpoint';
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment';
 
 
 @Injectable({
@@ -8,5 +7,6 @@ import { environment } from '../../../environments/environment';
 })
 export class AuthEndpoints{
     login: string = ApiConstant.baseUrl + "Auth/Login";
-
+    getPermission : string = ApiConstant.baseUrl +"Permission/GetAll";
+    addRole: string =ApiConstant.baseUrl+"Role/CreateRole"
 }

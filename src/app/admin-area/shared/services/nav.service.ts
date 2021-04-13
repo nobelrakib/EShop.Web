@@ -94,6 +94,12 @@ export class NavService implements OnDestroy {
 				{ path: 'javascript:void(0);', title: 'Products', type: 'extLink' }
 			]
 		},
+		{
+			title: 'Role', icon: 'users', type: 'sub', badgeType: 'success', active: true, children: [
+				{ path: '/admin/role', title: 'roles', type: 'link' },
+				{ path: 'javascript:void(0);', title: 'Products', type: 'extLink' }
+			]
+		}
 	];
 
 	MEGAMENUITEMS: Menu[] = [
