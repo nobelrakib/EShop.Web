@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AccountService } from './../account.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -10,13 +11,20 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
 
+  public show: boolean = false;
+
   loginForm: FormGroup;
   returnUrl: string;
 
-  constructor(private accountService: AccountService, private toastrService : ToastrService) { }
+  constructor(private accountService: AccountService, private toastrService : ToastrService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.createLoginForm();
+  }
+
+  showPassword() {
+    this.show = !this.show;
   }
 
   createLoginForm() {
@@ -30,6 +38,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.accountService.login(this.loginForm.value).subscribe(() => {
       this.toastrService.success("Login Successfully");
+      this.router.navigate(['/admin/dashboard']);
     }, error => {
       this.toastrService.error("Login Failed");
       console.log(error);

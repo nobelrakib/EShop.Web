@@ -8,6 +8,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { TranslateModule } from '@ngx-translate/core';
       RouterModule,
       FormsModule,
       ReactiveFormsModule,
-      TranslateModule
+      TranslateModule,
+      BsDropdownModule.forRoot(),
     ],
       exports: [
         HeaderComponent,
@@ -34,7 +36,8 @@ import { TranslateModule } from '@ngx-translate/core';
         RouterModule,
         FormsModule,
         ReactiveFormsModule,
-        TranslateModule
+        TranslateModule,
+        BsDropdownModule,
       ],
     entryComponents: []
 })

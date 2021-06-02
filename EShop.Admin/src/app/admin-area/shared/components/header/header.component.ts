@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { NavService } from '../../services/nav.service';
 import { LayoutService } from '../../services/layout.service';
+import { AccountService } from 'src/app/pages/account/account.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,7 @@ export class HeaderComponent implements OnInit {
   public elem: any;
   public dark: boolean = this.layout.config.settings.layout_version == 'dark-only' ? true : false;
 
-  constructor(public layout: LayoutService,
+  constructor(public layout: LayoutService, private accountService: AccountService,
     public navServices: NavService, 
     @Inject(DOCUMENT) private document: any
   ) {
@@ -21,6 +22,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.elem = document.documentElement;
+  }
+
+  logout(){
+    this.accountService.logout();
   }
 
   sidebarToggle() {
