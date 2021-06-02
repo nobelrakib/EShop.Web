@@ -30,14 +30,14 @@ export class RoleAddComponent implements OnInit {
     })
     this.PermissionService.getPermissions().subscribe(response=>{
          this.permissions=[...response]
-        // console.log(response)
+      
     })
-    // console.log(this.permissionList)
+    
   }
     
   onCheckboxChange(e) {
     const selectedPermission: FormArray = this.form.get('permissions') as FormArray;
-   // console.log(this.form)
+   
     if (e.target.checked) {
       selectedPermission.push(new FormControl( {id: e.target.value}))
     
@@ -46,7 +46,7 @@ export class RoleAddComponent implements OnInit {
        selectedPermission.removeAt(index);
     }
     console.log(this.form.get('permissions'))
-   // console.log(this.form.value);
+   
   }
     
   submit(){
