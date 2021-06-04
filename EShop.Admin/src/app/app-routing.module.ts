@@ -1,5 +1,7 @@
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './pages/account/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
 
@@ -10,10 +12,10 @@ const routes: Routes = [
   },
   {
     path: 'account', loadChildren: () => import('./pages/account/account.module').then(mod => mod.AccountModule),
-    data: { breadcrumb: {skip: true} }
+    data: { breadcrumb: { skip: true } }
   },
   {
-    path: '', component: NavBarComponent,
+    path: '', component: LoginComponent,
     children: [
 
     ]
@@ -26,7 +28,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [[RouterModule.forRoot(routes)],
-],
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

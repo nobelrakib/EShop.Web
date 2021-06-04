@@ -6,10 +6,16 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class RoleService {
+  
 
   constructor(private http: HttpClient, private authendpoint: AuthEndpoints) { }
 
   addRoles(model:any) {
     return  this.http.post(this.authendpoint.addRole,model);
   }
+
+  getRoles(model:any) {
+    return  this.http.get(this.authendpoint.,model);
+  }
+
 }
