@@ -9,11 +9,12 @@ const routes: Routes = [
   {
     path: '', component: ContentComponent,
     children: [
-    {path: 'dashboard', component: EShopAdminComponent},
-    {path: 'role', component: RoleComponent},
-    {path: 'role-add', component: RoleAddComponent},
+      { path: 'dashboard', component: EShopAdminComponent },
+      { path: 'role', component: RoleComponent },
+      { path: 'role-add', component: RoleAddComponent },
+      { path: 'role-edit/:id', component: RoleAddComponent },
 
-  ]
+    ]
   }
   // {
   //   path: 'dashboard', component: EShopAdminComponent
@@ -22,7 +23,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [[RouterModule.forChild(routes)],
-],
+  ],
   exports: [RouterModule]
 })
 export class AdminRoutingModule { }

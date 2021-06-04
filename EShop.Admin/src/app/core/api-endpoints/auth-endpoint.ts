@@ -8,5 +8,6 @@ import { Injectable } from '@angular/core';
 export class AuthEndpoints{
     login: string = ApiConstant.baseUrl + "Auth/Login";
     getPermission : string = ApiConstant.baseUrl +"Permission/GetAll";
-    addRole: string =ApiConstant.baseUrl+"Role/CreateRole"
+    addRole: string =ApiConstant.baseUrl+"Role/Create"
+    getRole: string  = ApiConstant.baseUrl+"Role/GetAll"
 }

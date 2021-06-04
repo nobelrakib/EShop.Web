@@ -34,10 +34,24 @@
                       </div>
                     -->
                     <div *ngFor="let permission of permissions">
-                      <label>
+                      <!-- <label>
                         <input type="checkbox" [value]="permission.id" (change)="onCheckboxChange($event)" />
+            
                         {{permission.permissionName}}
-                      </label>
+
+                      </label> -->
+                      <div class="media">
+                      <label class="col-form-label m-r-10"> {{permission.description}}</label>
+                      <div class="media-body text-right icon-state">
+                       
+                        <label class="switch">
+                          
+                          <input type="checkbox" [value]="permission.id" (change)="onCheckboxChange($event)" />
+                          <span class="switch-state"></span>
+                      
+                        </label>
+                      </div>
+                      </div>
                     </div>
                     </div>
                   </div>
@@ -56,5 +70,3 @@
     
         
   </div>
-</div>
-  

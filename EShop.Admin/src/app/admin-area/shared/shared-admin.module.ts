@@ -9,6 +9,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import{NgxDatatableModule} from '@swimlane/ngx-datatable'
+
 
 @NgModule({
     declarations: [
@@ -25,6 +27,9 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
       ReactiveFormsModule,
       TranslateModule,
       BsDropdownModule.forRoot(),
+      NgxDatatableModule,
+      
+
     ],
       exports: [
         HeaderComponent,
@@ -38,6 +43,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
         ReactiveFormsModule,
         TranslateModule,
         BsDropdownModule,
+        NgxDatatableModule
       ],
     entryComponents: []
 })
