@@ -8,6 +8,14 @@ import { Component, OnInit } from '@angular/core';
 
 export class EShopAdminComponent implements OnInit  {
 
+  show: boolean = true;
+  
+  constructor(){
+    setTimeout(() => {
+      this.show = false;
+    }, 3000);
+  }
   ngOnInit(): void {
+    
   }
 }

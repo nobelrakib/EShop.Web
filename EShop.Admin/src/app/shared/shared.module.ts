@@ -1,4 +1,5 @@
 import { AlertComponent } from './components/alert/alert.component';
+import { LoaderComponent } from './components/loader/loader.component';
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
@@ -6,10 +7,11 @@ import { BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TextInputComponent } from './components/text-input/text-input.component';
 import { CommonModule } from "@angular/common";
+import { LoadingBarModule } from '@ngx-loading-bar/core';
 
 
 @NgModule({
-    declarations: [NavBarComponent, TextInputComponent,AlertComponent],
+    declarations: [NavBarComponent, TextInputComponent,AlertComponent, LoaderComponent],
     imports: [RouterModule,
       BsDropdownModule.forRoot(),
       FormsModule,
@@ -25,7 +27,8 @@ import { CommonModule } from "@angular/common";
         FormsModule,
         ReactiveFormsModule,
         CommonModule,
-        AlertComponent
+        AlertComponent,
+        LoaderComponent
       ]
     
 })
