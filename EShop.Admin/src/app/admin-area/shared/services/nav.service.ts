@@ -25,14 +25,14 @@ export interface Menu {
 export class NavService implements OnDestroy {
 
 	private unsubscriber: Subject<any> = new Subject();
-	public  screenWidth: BehaviorSubject<number> = new BehaviorSubject(window.innerWidth);
+	public screenWidth: BehaviorSubject<number> = new BehaviorSubject(window.innerWidth);
 
 	// Search Box
 	public search: boolean = false;
 
 	// Language
 	public language: boolean = false;
-	
+
 	// Mega Menu
 	public megaMenu: boolean = false;
 	public levelMenu: boolean = false;
@@ -56,12 +56,12 @@ export class NavService implements OnDestroy {
 				this.megaMenu = false;
 				this.levelMenu = false;
 			}
-			if(evt.target.innerWidth < 1199) {
+			if (evt.target.innerWidth < 1199) {
 				this.megaMenuColapse = true;
 			}
 		});
-		if(window.innerWidth < 991) { // Detect Route change sidebar close
-			this.router.events.subscribe(event => { 
+		if (window.innerWidth < 991) { // Detect Route change sidebar close
+			this.router.events.subscribe(event => {
 				this.collapseSidebar = true;
 				this.megaMenu = false;
 				this.levelMenu = false;
@@ -95,7 +95,7 @@ export class NavService implements OnDestroy {
 			]
 		},
 		{
-			title: 'Role', icon: 'users', type: 'sub', badgeType: 'success', active: true, children: [
+			title: 'Access Control', icon: 'lock', type: 'sub', badgeType: 'success', active: true, children: [
 				{ path: '/admin/role', title: 'roles', type: 'link' },
 				{ path: 'javascript:void(0);', title: 'Products', type: 'extLink' }
 			]
