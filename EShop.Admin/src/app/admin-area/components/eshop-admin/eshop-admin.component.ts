@@ -1,7 +1,4 @@
-import { Component, OnInit, AfterViewInit, Injectable } from '@angular/core';
-import * as feather from 'feather-icons';
-import { LayoutService } from '../../shared/services/layout.service';
-import { NavService } from '../../shared/services/nav.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-eshop-admin',
