@@ -1,9 +1,10 @@
-import { IPagination } from './../../shared/models/pagination';
-import { IRole, IRoleWithPaginationInfo } from './../../shared/models/role';
+import { AlertService } from './../../shared/components/alert/alert.service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ColumnMode, SelectionType, SortType } from '@swimlane/ngx-datatable';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RoleService } from '../services/role.service';
+import { IPagination } from 'src/app/shared/models/pagination';
+import { IRoleWithPaginationInfo, IRole } from 'src/app/shared/models/role';
 
 @Component({
   selector: 'app-role',
@@ -23,7 +24,7 @@ export class RoleComponent implements OnInit {
   selectionType = SelectionType;
   page: IPagination = {
     pageNo: 1,
-    pageSize: 2,
+    pageSize: 1,
     total: 0
   };
 
@@ -35,7 +36,7 @@ export class RoleComponent implements OnInit {
 
   constructor(private roleService: RoleService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute, private alertService: AlertService) { }
 
   ngOnInit(): void {
     this.loadRoles();
@@ -69,6 +70,11 @@ export class RoleComponent implements OnInit {
   editRole(role: IRole) {
     console.log(role)
     this.router.navigate(['/admin/role-edit', role.id]);
+  }
+
+  removeRole(id:number){
+    console.log(id);
+    this.alertService.confirm();
   }
 
 }

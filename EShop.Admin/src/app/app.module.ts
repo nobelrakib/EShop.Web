@@ -1,3 +1,4 @@
+import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -43,8 +44,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     // LoadingBarHttpClientModule,
     // // for Router use:
     // LoadingBarRouterModule,
-    // // for Core use:
-    // LoadingBarModule
+    // for Core use:
+    LoadingBarModule
+  
   ],
   providers: [    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
