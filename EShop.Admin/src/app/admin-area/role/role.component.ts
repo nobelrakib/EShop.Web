@@ -24,7 +24,7 @@ export class RoleComponent implements OnInit {
   selectionType = SelectionType;
   page: IPagination = {
     pageNo: 1,
-    pageSize: 2,
+    pageSize: 1,
     total: 0
   };
 

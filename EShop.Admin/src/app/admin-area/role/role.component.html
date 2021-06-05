@@ -3,10 +3,81 @@
 <div class="row">
   <div class="col-md-12">
     <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">Roles</h3>
+      <div class="card-header header">
+
+
+        <h3 style="display: inline;" class="card-title">Roles</h3>
+        <a style="display: inline; float: right;margin-top: 0" routerLink="/admin/role-add"
+          class="space-generator btn btn-outline-secondary mr-2">Add Role</a>
+
       </div>
       <div class="card-body">
+        <div class="row">
+          <div class="col-md-12 position-relative">
+            <ngx-datatable class="bootstrap" [rows]="roles" [sortType]="sortType.multi" [columns]="columns"
+              [columnMode]="columnMode.force" [headerHeight]="50" [footerHeight]="50" rowHeight="auto"
+              [externalPaging]="true" [count]="page.total" [offset]="page.pageNo" [limit]="page.pageSize"
+              (page)="paginate($event)">
+              <ngx-datatable-footer>
+                <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize"
+                  let-selectedCount="selectedCount" let-curPage="curPage" let-offset="offset">
+                  <div>
+                    <page-size-selector (onPageSizeChanged)="onPageSizeChanged($event)" [totalItems]="page.total"
+                      [size]="page.size"></page-size-selector>
+                  </div>
+                  <datatable-pager [pagerLeftArrowIcon]="'datatable-icon-left'"
+                    [pagerRightArrowIcon]="'datatable-icon-right'" [pagerPreviousIcon]="'datatable-icon-prev'"
+                    [pagerNextIcon]="'datatable-icon-skip'" [page]="calculatedPageNo" [size]="page.pageSize"
+                    [count]="page.total" [hidden]="!(rowCount / pageSize > 1)" (change)="paginate($event)">
+                  </datatable-pager>
+                </ng-template>
+              </ngx-datatable-footer>
+              <ng-template #slTemplate let-rowIndex="rowIndex" let-value="value" ngx-datatable-row-detail-template>
+                {{(page.pageNo - 1)*(page.pageSize + 1)+rowIndex+1}}
+              </ng-template>
+             <ng-template #statusTemplate let-row="row" ngx-datatable-row-detail-template>
+            <div style="display: inline-block;">
+              <a style="display: inline;padding-left: 0" class="dropdown-item mr-2" (click)="editRole(row)">
+                <span><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></span>
+              </a>
+              <a class="mr-2 cursor-pointer">
+                <span><i class="fa fa-2x fa-trash" (click)="removeRole(row.id)" aria-hidden="true"></i></span>
+              </a>
+            </div>
+          </ng-template>
+            </ngx-datatable>
+          </div>
+        </div>
+        <ngx-datatable class="bootstrap" [rows]="roles" [sortType]="sortType.multi" [columns]="columns"
+          [columnMode]="columnMode.force" [headerHeight]="50" [footerHeight]="50" rowHeight="auto"
+          [externalPaging]="true" [count]="page.total" [offset]="page.pageNo" [limit]="page.pageSize"
+          (page)="paginate($event)">
+          <ngx-datatable-footer>
+            <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize"
+              let-selectedCount="selectedCount" let-curPage="curPage" let-offset="offset">
+              <div>
+                <page-size-selector (onPageSizeChanged)="onPageSizeChanged($event)" [totalItems]="page.total"
+                  [size]="page.size"></page-size-selector>
+              </div>
+              <datatable-pager [pagerLeftArrowIcon]="'datatable-icon-left'"
+                [pagerRightArrowIcon]="'datatable-icon-right'" [pagerPreviousIcon]="'datatable-icon-prev'"
+                [pagerNextIcon]="'datatable-icon-skip'" [page]="calculatedPageNo" [size]="page.pageSize"
+                [count]="page.total" [hidden]="!(rowCount / pageSize > 1)" (change)="paginate($event)">
+              </datatable-pager>
+            </ng-template>
+          </ngx-datatable-footer>
+          <ng-template #slTemplate let-rowIndex="rowIndex" let-value="value" ngx-datatable-row-detail-template>
+            {{(page.pageNo - 1)*(page.pageSize + 1)+rowIndex+1}}
+          </ng-template>
+          <ng-template #statusTemplate let-row="row" ngx-datatable-row-detail-template>
+            <div style="display: inline-block;">
+              <a class="dropdown-item cursor-pointer" (click)="editRole(row)">
+                <span class="mr-2"><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></span>
+              </a>
+              <span class="mr-2"><i class="fa fa-2x fa-trash" aria-hidden="true"></i></span>
+            </div>
+          </ng-template>
+        </ngx-datatable>
         <ngx-datatable class="bootstrap" [rows]="roles" [sortType]="sortType.multi" [columns]="columns"
           [columnMode]="columnMode.force" [headerHeight]="50" [footerHeight]="50" rowHeight="auto"
           [externalPaging]="true" [count]="page.total" [offset]="page.pageNo" [limit]="page.pageSize"
@@ -39,6 +110,8 @@
             </div>
           </ng-template>
         </ngx-datatable>
+
+
 
 
       </div>
