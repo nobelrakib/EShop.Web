@@ -1,4 +1,6 @@
 <app-breadcrumb [items]="['Access Control', 'Roles']"></app-breadcrumb>
+<app-filter-by></app-filter-by>
+
 <div class="row">
   <div class="col-md-12">
     <div class="card">
@@ -34,24 +36,19 @@
               <ng-template #slTemplate let-rowIndex="rowIndex" let-value="value" ngx-datatable-row-detail-template>
                 {{(page.pageNo - 1)*(page.pageSize + 1)+rowIndex+1}}
               </ng-template>
-              <ng-template #statusTemplate let-row="row" ngx-datatable-row-detail-template>
-                <div style="display: inline-block;">
-                  <a style="display: inline;padding-left: 0" class="dropdown-item mr-2" (click)="editRole(row)">
-                    <span><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></span>
-                  </a>
-                  <a class="mr-2 cursor-pointer">
-                    <span><i class="fa fa-2x fa-trash" (click)="removeRole(row.id)" aria-hidden="true"></i></span>
-                  </a>
-                </div>
-              </ng-template>
+             <ng-template #statusTemplate let-row="row" ngx-datatable-row-detail-template>
+            <div style="display: inline-block;">
+              <a style="display: inline;padding-left: 0" class="dropdown-item mr-2" (click)="editRole(row)">
+                <span><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></span>
+              </a>
+              <a class="mr-2 cursor-pointer">
+                <span><i class="fa fa-2x fa-trash" (click)="removeRole(row.id)" aria-hidden="true"></i></span>
+              </a>
+            </div>
+          </ng-template>
             </ngx-datatable>
           </div>
         </div>
-
-
-
-
-
       </div>
     </div>
   </div>

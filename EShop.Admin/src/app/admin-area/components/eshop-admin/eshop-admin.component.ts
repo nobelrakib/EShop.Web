@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class EShopAdminComponent implements OnInit  {
-
   show: boolean = true;
   
   constructor(){
@@ -16,6 +15,5 @@ export class EShopAdminComponent implements OnInit  {
     }, 3000);
   }
   ngOnInit(): void {
-    
   }
 }
