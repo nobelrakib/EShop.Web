@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { FilterByComponent } from './components/filter-by/filter-by.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     ContentComponent,
     FeatherIconsComponent,
     BreadcrumbComponent,
-    MegaMenuComponent
+    MegaMenuComponent,
+    FilterByComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +52,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     NgxDatatableModule,
     BreadcrumbComponent,
     MegaMenuComponent,    
-    NgbModule
+    NgbModule,
+    FilterByComponent
   ],
   entryComponents: []
 })
