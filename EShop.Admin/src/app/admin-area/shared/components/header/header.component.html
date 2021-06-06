@@ -32,15 +32,15 @@
             </div>
           </div>
           <ul class="profile-dropdown onhover-show-div">
-            <li>
+            <!-- <li>
 
               <a (click)="logout()" class="dropdown-item d-flex align-items-center py-2">
                 <i class="fa fa-sign-out mr-3"></i> Logout
               </a>
 
-            </li>
-            <li><a href="#">
-                <app-feather-icons [icon]="'mail'"></app-feather-icons><span>Inbox</span>
+            </li> -->
+            <li><a (click)="logout()">
+                <app-feather-icons [icon]="'log-out'"></app-feather-icons><span>Logout</span>
               </a></li>
             <li><a href="#">
                 <app-feather-icons [icon]="'file-text'"></app-feather-icons><span>Taskboard</span>

@@ -4,15 +4,16 @@
 <div class="row">
   <div class="col-md-12">
     <div class="card">
-      <div class="card-header header">
+
+      <div class="card-header" style="padding-bottom: 0;">
 
 
         <h3 style="display: inline;" class="card-title">Roles</h3>
         <a style="display: inline; float: right;margin-top: 0" routerLink="/admin/role-add"
-          class="space-generator btn btn-outline-secondary mr-2">Add Role</a>
+          class="space-generator btn btn-outline-primary mr-2">Add Role</a>
 
       </div>
-      <div class="card-body">
+      <div class="card-body " style="padding-top: 0;">
         <div class="row">
           <div class="col-md-12 position-relative">
             <ngx-datatable class="bootstrap" [rows]="roles" [sortType]="sortType.multi" [columns]="columns"
@@ -36,16 +37,16 @@
               <ng-template #slTemplate let-rowIndex="rowIndex" let-value="value" ngx-datatable-row-detail-template>
                 {{(page.pageNo - 1)*(page.pageSize + 1)+rowIndex+1}}
               </ng-template>
-             <ng-template #statusTemplate let-row="row" ngx-datatable-row-detail-template>
-            <div style="display: inline-block;">
-              <a style="display: inline;padding-left: 0" class="dropdown-item mr-2" (click)="editRole(row)">
-                <span><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></span>
-              </a>
-              <a class="mr-2 cursor-pointer">
-                <span><i class="fa fa-2x fa-trash" (click)="removeRole(row.id)" aria-hidden="true"></i></span>
-              </a>
-            </div>
-          </ng-template>
+              <ng-template #statusTemplate let-row="row" ngx-datatable-row-detail-template>
+                <div style="display: inline-block;">
+                  <a style="display: inline;padding-left: 0" class="dropdown-item mr-2" (click)="editRole(row)">
+                    <span><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></span>
+                  </a>
+                  <a class="mr-2 cursor-pointer">
+                    <span><i class="fa fa-2x fa-trash" (click)="removeRole(row.id)" aria-hidden="true"></i></span>
+                  </a>
+                </div>
+              </ng-template>
             </ngx-datatable>
           </div>
         </div>
