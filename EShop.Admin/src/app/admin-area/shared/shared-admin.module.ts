@@ -1,3 +1,4 @@
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MegaMenuComponent } from './components/mega-menu/mega-menu.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { FeatherIconsComponent } from './components/feather-icons/feather-icons.component';
@@ -12,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { FilterByComponent } from './components/filter-by/filter-by.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     ContentComponent,
     FeatherIconsComponent,
     BreadcrumbComponent,
-    MegaMenuComponent
+    MegaMenuComponent,
+    FilterByComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +34,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     TranslateModule,
     BsDropdownModule.forRoot(),
     NgxDatatableModule,
-
+    NgbModule
 
   ],
   exports: [
@@ -48,7 +51,9 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     BsDropdownModule,
     NgxDatatableModule,
     BreadcrumbComponent,
-    MegaMenuComponent
+    MegaMenuComponent,    
+    NgbModule,
+    FilterByComponent
   ],
   entryComponents: []
 })
