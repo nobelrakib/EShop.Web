@@ -5,7 +5,6 @@ import { EShopAdminComponent } from './components/eshop-admin/eshop-admin.compon
 import {SharedAdminModule} from './shared/shared-admin.module';
 import { RoleComponent } from './role/role.component';
 import { RoleAddComponent } from './role-add/role-add.component';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
     declarations: [
@@ -16,7 +15,6 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     imports: [
         AdminRoutingModule,
         SharedAdminModule,
-        BsDatepickerModule.forRoot(),
     ],
   })
   export class AdminModule { }

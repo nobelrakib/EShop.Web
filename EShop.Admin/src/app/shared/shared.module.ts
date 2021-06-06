@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TextInputComponent } from './components/text-input/text-input.component';
 import { CommonModule } from "@angular/common";
 import { LoadingBarModule } from '@ngx-loading-bar/core';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 @NgModule({
@@ -17,7 +18,7 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
       FormsModule,
       ReactiveFormsModule,
       CommonModule,
-        FormsModule,
+      FormsModule,
     ],
     exports: [
         NavBarComponent,

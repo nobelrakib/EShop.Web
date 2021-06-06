@@ -15,8 +15,10 @@ export class FilterByComponent implements OnInit {
   }
   ngOnInit(): void {
     this.filterColumns.push(
-      {"labelText":"Product Code", "inputType":'text',"htmlElement": "input"},
-      {"labelText":"Product Name", "inputType":'date', "htmlElement": "input"},
+      {"labelText":"Product Name", "inputType":'text',"htmlElement": "input"},
+      {"labelText":"Mobile number", "inputType":'number', "htmlElement": "input"},
+      {"labelText":"Date", "inputType":'date', "htmlElement": "date"},
+      {"labelText":"Date range", "inputType":'daterange', "htmlElement": "date"},
       );
   }
 

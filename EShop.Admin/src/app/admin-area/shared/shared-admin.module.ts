@@ -14,6 +14,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FilterByComponent } from './components/filter-by/filter-by.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [
@@ -34,8 +35,8 @@ import { FilterByComponent } from './components/filter-by/filter-by.component';
     TranslateModule,
     BsDropdownModule.forRoot(),
     NgxDatatableModule,
-    NgbModule
-
+    NgbModule,
+    BsDatepickerModule.forRoot(),
   ],
   exports: [
     HeaderComponent,
