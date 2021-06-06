@@ -24,7 +24,7 @@ export class RoleComponent implements OnInit {
   selectionType = SelectionType;
   page: IPagination = {
     pageNo: 1,
-    pageSize: 1,
+    pageSize: 2,
     total: 0
   };
 
@@ -72,7 +72,7 @@ export class RoleComponent implements OnInit {
     this.router.navigate(['/admin/role-edit', role.id]);
   }
 
-  removeRole(id:number){
+  removeRole(id: number) {
     console.log(id);
     this.alertService.confirm();
   }
