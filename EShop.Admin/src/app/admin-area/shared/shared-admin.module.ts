@@ -1,3 +1,4 @@
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MegaMenuComponent } from './components/mega-menu/mega-menu.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { FeatherIconsComponent } from './components/feather-icons/feather-icons.component';
@@ -31,7 +32,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     TranslateModule,
     BsDropdownModule.forRoot(),
     NgxDatatableModule,
-
+    NgbModule
 
   ],
   exports: [
@@ -48,7 +49,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     BsDropdownModule,
     NgxDatatableModule,
     BreadcrumbComponent,
-    MegaMenuComponent
+    MegaMenuComponent,    
+    NgbModule
   ],
   entryComponents: []
 })
