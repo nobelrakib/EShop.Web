@@ -18,7 +18,8 @@ export class FilterByComponent implements OnInit {
       {"labelText":"Product Name", "inputType":'text',"htmlElement": "input"},
       {"labelText":"Mobile number", "inputType":'number', "htmlElement": "input"},
       {"labelText":"Date", "inputType":'date', "htmlElement": "date"},
-      {"labelText":"Date range", "inputType":'daterange', "htmlElement": "date"},
+      {"labelText":"Is it Delivered ?", "inputType":'', "htmlElement": "checkbox"},
+      {"labelText":"Date Range", "inputType":'daterange', "htmlElement": "date"},
       );
   }
 

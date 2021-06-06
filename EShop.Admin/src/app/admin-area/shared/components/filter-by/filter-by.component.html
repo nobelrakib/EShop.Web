@@ -43,8 +43,25 @@
                             class="form-control" placeholder="Daterangepicker" bsDaterangepicker
                               [daysDisabled]="[6,0]">
                           </div>
+
+                          
+                            <div *ngIf="column.htmlElement === 'checkbox'" class="media-body text-right icon-state">
+                              <label class="switch">
+                                <input type="checkbox"><span class="switch-state"></span>
+                              </label>
+                            </div>
+
                         </div>
                       </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-2">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fa  fa-filter"></i> Search</button>
+
                     </div>
                   </div>
                 </ng-template>
