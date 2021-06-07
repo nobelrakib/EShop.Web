@@ -19,16 +19,17 @@
     <div class="nav-right col-8 pull-right right-header p-0">
       <ul class="nav-menus">
         <li>
-          <div class="mode" (click)="layoutToggle()">
+          <!-- <div class="mode" (click)="layoutToggle()">
             <i class="fa fa-moon-o" *ngIf="!dark"></i>
             <i class="fa fa-lightbulb-o" *ngIf="dark"></i>
-          </div>
+          </div> -->
         </li>
         <li class="profile-nav onhover-dropdown p-0">
-          <div class="media profile-media">
-            <img class="b-r-10" src="assets/images/dashboard/profile.jpg" alt="">
-            <div class="media-body"><span>Emay Walter</span>
-              <p class="mb-0 font-roboto">Admin <i class="middle fa fa-angle-down"></i></p>
+          <div class="media profile-media" *ngIf="(accountService.currentUser$ | async) as IUser">
+            <!-- <img class="b-r-10" src="assets/images/dashboard/profile.jpg" alt=""> -->
+            <app-feather-icons [icon]="'user'"></app-feather-icons>
+            <div class="media-body"><span>{{IUser.userProfile.fullName}}</span>
+              <p class="mb-0 font-roboto">{{IUser.userProfile.roleName}} <i class="middle fa fa-angle-down"></i></p>
             </div>
           </div>
           <ul class="profile-dropdown onhover-show-div">
