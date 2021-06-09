@@ -14,8 +14,8 @@ export class HeaderComponent implements OnInit {
   public elem: any;
   public dark: boolean = this.layout.config.settings.layout_version == 'dark-only' ? true : false;
 
-  constructor(public layout: LayoutService, private accountService: AccountService,
-    public navServices: NavService, 
+  constructor(public layout: LayoutService, public accountService: AccountService,
+    public navServices: NavService,
     @Inject(DOCUMENT) private document: any
   ) {
   }
@@ -24,13 +24,13 @@ export class HeaderComponent implements OnInit {
     this.elem = document.documentElement;
   }
 
-  logout(){
+  logout() {
     this.accountService.logout();
   }
 
   sidebarToggle() {
     this.navServices.collapseSidebar = !this.navServices.collapseSidebar;
-    this.navServices.megaMenu  = false;
+    this.navServices.megaMenu = false;
     this.navServices.levelMenu = false;
   }
 

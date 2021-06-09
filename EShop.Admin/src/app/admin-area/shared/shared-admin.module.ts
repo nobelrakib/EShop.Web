@@ -14,6 +14,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FilterByComponent } from './components/filter-by/filter-by.component';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { FilterByComponent } from './components/filter-by/filter-by.component';
     ReactiveFormsModule,
     TranslateModule,
     BsDropdownModule.forRoot(),
+    PaginationModule.forRoot(),
     NgxDatatableModule,
     NgbModule
 
@@ -47,11 +50,12 @@ import { FilterByComponent } from './components/filter-by/filter-by.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    PaginationModule,
     TranslateModule,
     BsDropdownModule,
     NgxDatatableModule,
     BreadcrumbComponent,
-    MegaMenuComponent,    
+    MegaMenuComponent,
     NgbModule,
     FilterByComponent
   ],
