@@ -1,4 +1,4 @@
-<app-breadcrumb [items]="['Access Control', 'Roles','Add Role']"></app-breadcrumb>
+<app-breadcrumb [items]="['Access Control', 'Roles', pageTitle]"></app-breadcrumb>
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-12 col-xl-6">
@@ -9,7 +9,7 @@
         <div class="col-sm-12">
           <div class="card">
             <div class="card-header">
-              <h5>Add Role</h5>
+              <h5>{{pageTitle}}</h5>
             </div>
             <div class="card-body">
               <form class="theme-form" [formGroup]="form" (ngSubmit)="submit()">
@@ -32,7 +32,12 @@
                         <input id="inline-form-1" type="checkbox" [value]="permission.id" (change)="onCheckboxChange($event)">
                         <label class="mb-0" for="inline-form-1"> {{permission.permissionName}} </label>
                       </div>
-                    -->
+                    <!-- {{form.get('permissions').value | json}}  -->
+                    <!-- <div *ngFor="let p of permissionsFormArray.controls; let i=index">
+                    {{p.value | json}}
+                    </div> -->
+
+                    {{role.rolePermissions|json}}
                       <div *ngFor="let permission of permissions">
                         <!-- <label>
                         <input type="checkbox" [value]="permission.id" (change)="onCheckboxChange($event)" />
@@ -40,13 +45,15 @@
                         {{permission.permissionName}}
 
                       </label> -->
+                      
                         <div class="media">
                           <label class="col-form-label m-r-10"> {{permission.description}}</label>
                           <div class="media-body text-right icon-state">
 
                             <label class="switch">
-
-                              <input type="checkbox" [value]="permission.id" (change)="onCheckboxChange($event)" />
+                              <input type="checkbox"
+                               [checked]="permissionIds.includes(permission.id) ? true: false" 
+                               [value]="permission.id" (change)="onCheckboxChange($event)" />
                               <span class="switch-state"></span>
 
                             </label>

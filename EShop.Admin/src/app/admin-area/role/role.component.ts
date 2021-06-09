@@ -68,13 +68,15 @@ export class RoleComponent implements OnInit {
   }
 
   editRole(role: IRole) {
-    console.log(role)
+    console.log(role);
     this.router.navigate(['/admin/role-edit', role.id]);
   }
 
   removeRole(id: number) {
     console.log(id);
-    this.alertService.confirm();
+    this.alertService.confirm().then((confirmed) => {
+      this.roleService.getRoles
+    });
   }
 
 }
