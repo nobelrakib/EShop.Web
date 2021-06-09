@@ -83,19 +83,19 @@ export class NavService implements OnDestroy {
 			headTitle1: 'Dashboard', headTitle2: 'Ready Sample Page.',
 		},
 		{
-			title: 'Catalog', icon: 'home', type: 'sub', badgeType: 'success', active: true, children: [
+			title: 'Catalog', icon: 'home', type: 'sub', badgeType: 'success', active: false, children: [
 				{ path: '/sample-page', title: 'Categories', type: 'link' },
 				{ path: 'javascript:void(0);', title: 'Products', type: 'extLink' }
 			]
 		},
 		{
-			title: 'Customers', icon: 'users', type: 'sub', badgeType: 'success', active: true, children: [
+			title: 'Customers', icon: 'users', type: 'sub', badgeType: 'success', active: false, children: [
 				{ path: '/sample-page', title: 'Categories', type: 'link' },
 				{ path: 'javascript:void(0);', title: 'Products', type: 'extLink' }
 			]
 		},
 		{
-			title: 'Access Control', icon: 'lock', type: 'sub', badgeType: 'success', active: true, children: [
+			title: 'Access Control', icon: 'lock', type: 'sub', badgeType: 'success', active: false, children: [
 				{ path: '/admin/role', title: 'roles', type: 'link' },
 				{ path: 'javascript:void(0);', title: 'Products', type: 'extLink' }
 			]
