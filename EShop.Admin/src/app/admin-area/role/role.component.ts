@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { AlertService } from './../../shared/components/alert/alert.service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ColumnMode, DatatableComponent, SelectionType, SortType } from '@swimlane/ngx-datatable';
@@ -46,7 +47,7 @@ export class RoleComponent implements OnInit {
 
   constructor(private roleService: RoleService,
     private router: Router,
-    private route: ActivatedRoute, private alertService: AlertService) { }
+    private route: ActivatedRoute, private alertService: AlertService, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.loadRoles();
@@ -85,7 +86,11 @@ export class RoleComponent implements OnInit {
   removeRole(id: number) {
     console.log(id);
     this.alertService.confirm().then((confirmed) => {
-      this.roleService.getRoles
+      if(confirmed){
+        this.roleService.deleteRole(id).subscribe(() => {
+          this.toastrService.success('Deleted Successfully');
+        })
+      }
     });
   }
 

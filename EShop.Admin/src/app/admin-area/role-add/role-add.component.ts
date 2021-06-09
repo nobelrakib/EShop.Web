@@ -52,7 +52,6 @@ export class RoleAddComponent implements OnInit {
         this.role.rolePermissions.map(x => this.permissionIds.push(x.permissionId));
 
       const selectedPermission: FormArray = this.form.get('permissions') as FormArray;
-      // var permissions = this.permissions.filter(x => this.role.rolePermissions.find(y => y.id === x.id));
       this.role.rolePermissions.forEach(x => selectedPermission.push(new FormControl({ id: x.permissionId.toString() })));
       console.log(this.form.get('permissions'));
       });
@@ -79,7 +78,9 @@ export class RoleAddComponent implements OnInit {
     this.roleService.addRoles(this.form.value).subscribe(res => {
       if (this.editState)
         this.toastrService.success("Role updated successfully");
-      this.toastrService.success("Role created successfully");
+      else
+        this.toastrService.success("Role created successfully");
+
     })
     console.log(this.permissions);
   }
