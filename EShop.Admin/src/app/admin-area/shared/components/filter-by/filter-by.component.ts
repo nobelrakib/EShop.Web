@@ -20,6 +20,8 @@ export class FilterByComponent implements OnInit {
       {"labelText":"Date", "inputType":'date', "htmlElement": "date"},
       {"labelText":"Is it Delivered ?", "inputType":'', "htmlElement": "checkbox"},
       {"labelText":"Date Range", "inputType":'daterange', "htmlElement": "date"},
+      {"labelText":"Single select dropdown", "inputType":'', "htmlElement": "select-dropdown"},
+      {"labelText":"Multi select dropdown", "inputType":'', "htmlElement": "multi-select-dropdown"},
       );
   }
 

@@ -51,6 +51,31 @@
                               </label>
                             </div>
 
+                            <div *ngIf="column.htmlElement === 'select-dropdown'">
+                              <ng-select [searchable]="true" 
+                              >
+                                  <ng-option [value]="true">Yes</ng-option>
+                                  <ng-option [value]="false">No</ng-option>
+                              </ng-select>
+                            </div>
+
+                            <div *ngIf="column.htmlElement === 'multi-select-dropdown'">
+                              <ng-select [searchable]="true" [multiple]="true"
+                              >
+                                  <ng-option [value]="true">Yes</ng-option>
+                                  <ng-option [value]="false">No</ng-option>
+
+
+                                  <!-- <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
+                                    <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/>
+                                     {{item.gender | uppercase}}
+                                </ng-template>
+                                <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                                    <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.name}}
+                                </ng-template> -->
+                              </ng-select>
+                            </div>
+
                         </div>
                       </div>
                     </div>
