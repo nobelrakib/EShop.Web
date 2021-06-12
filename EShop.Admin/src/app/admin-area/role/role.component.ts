@@ -51,12 +51,13 @@ export class RoleComponent implements OnInit {
 
   filterBySettings: IFilterBySetting[] = [
       {labelText:"Product Name", inputType:'text',htmlElement: HtmlElementEnum.Input},
+      {labelText:"Category Name", inputType:'text',htmlElement: HtmlElementEnum.Input},
       {labelText:"Mobile number", inputType:'number', htmlElement: HtmlElementEnum.Input},
+      {labelText:"Date Range", inputType:'daterange', htmlElement: HtmlElementEnum.Date},
       {labelText:"Date", inputType:'date', htmlElement: HtmlElementEnum.Date},
       {labelText:"Is it Delivered ?", htmlElement: HtmlElementEnum.Checkbox},
-      {labelText:"Date Range", inputType:'daterange', htmlElement: HtmlElementEnum.Date},
       {labelText:"Single select dropdown", htmlElement: HtmlElementEnum.Dropdown, dropDownItems: this.countries},
-      {labelText:"Multi select dropdown", htmlElement: HtmlElementEnum.MultiSelectDropdown,dropDownItems: this.countries}
+    {labelText:"Multi select dropdown", htmlElement: HtmlElementEnum.MultiSelectDropdown,dropDownItems: this.countries}
   ];
 
   constructor(private roleService: RoleService,
