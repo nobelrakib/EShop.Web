@@ -1,3 +1,5 @@
+import { IFilterBySetting } from './../shared/models/IFilterBySetting';
+import { HtmlElementEnum } from './../shared/enums/filterBySetting-enum';
 import { ToastrService } from 'ngx-toastr';
 import { AlertService } from './../../shared/components/alert/alert.service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
@@ -44,6 +46,18 @@ export class RoleComponent implements OnInit {
   }
 
   columns: any[] = [];
+
+  countries: any[] = [{"id":1,"name":"Saudi Arabia"},{"id":2,"name":"Bangladesh"},{"id":3,"name":"Bahrain"}];
+
+  filterBySettings: IFilterBySetting[] = [
+      {labelText:"Product Name", inputType:'text',htmlElement: HtmlElementEnum.Input},
+      {labelText:"Mobile number", inputType:'number', htmlElement: HtmlElementEnum.Input},
+      {labelText:"Date", inputType:'date', htmlElement: HtmlElementEnum.Date},
+      {labelText:"Is it Delivered ?", htmlElement: HtmlElementEnum.Checkbox},
+      {labelText:"Date Range", inputType:'daterange', htmlElement: HtmlElementEnum.Date},
+      {labelText:"Single select dropdown", htmlElement: HtmlElementEnum.Dropdown, dropDownItems: this.countries},
+      {labelText:"Multi select dropdown", htmlElement: HtmlElementEnum.MultiSelectDropdown,dropDownItems: this.countries}
+  ];
 
   constructor(private roleService: RoleService,
     private router: Router,

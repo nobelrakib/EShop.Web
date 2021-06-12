@@ -1,3 +1,4 @@
+import { IFilterBySetting } from './../../models/IFilterBySetting';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -6,23 +7,15 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./filter-by.component.scss']
 })
 export class FilterByComponent implements OnInit {
-
-  @Input() filterColumns: any[] = [];
+  
+  @Input() filterByColumnSettings: IFilterBySetting[] = [];
   constructor() { }
 
   onDateChange(newDate: Date) {
     console.log(newDate);
   }
   ngOnInit(): void {
-    this.filterColumns.push(
-      {"labelText":"Product Name", "inputType":'text',"htmlElement": "input"},
-      {"labelText":"Mobile number", "inputType":'number', "htmlElement": "input"},
-      {"labelText":"Date", "inputType":'date', "htmlElement": "date"},
-      {"labelText":"Is it Delivered ?", "inputType":'', "htmlElement": "checkbox"},
-      {"labelText":"Date Range", "inputType":'daterange', "htmlElement": "date"},
-      {"labelText":"Single select dropdown", "inputType":'', "htmlElement": "select-dropdown"},
-      {"labelText":"Multi select dropdown", "inputType":'', "htmlElement": "multi-select-dropdown"},
-      );
+
   }
 
 }

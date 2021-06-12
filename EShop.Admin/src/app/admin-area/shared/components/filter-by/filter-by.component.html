@@ -28,7 +28,7 @@
                   <!-- here is all filter by component  -->
 
                   <div class="row">
-                    <div class="col-md-6" *ngFor="let column of filterColumns">
+                    <div class="col-md-6" *ngFor="let column of filterByColumnSettings">
                       <div class="form-group row">
                         <label class="col-sm-4 col-form-label">{{column.labelText}}</label>
                         <div class="col-sm-8">
@@ -36,45 +36,41 @@
                             type="{{column.inputType}}" placeholder="Enter {{column.labelText}}">
 
                           <div *ngIf="column.htmlElement === 'date'">
-                            <input *ngIf="column.inputType === 'date'"
-                            class="form-control" placeholder="Datepicker" bsDatepicker [daysDisabled]="[6,0]">
+                            <input *ngIf="column.inputType === 'date'" class="form-control" placeholder="Datepicker"
+                              bsDatepicker [daysDisabled]="[6,0]">
 
-                            <input *ngIf="column.inputType === 'daterange'"
-                            class="form-control" placeholder="Daterangepicker" bsDaterangepicker
-                              [daysDisabled]="[6,0]">
+                            <input *ngIf="column.inputType === 'daterange'" class="form-control"
+                              placeholder="Daterangepicker" bsDaterangepicker [daysDisabled]="[6,0]">
                           </div>
 
-                          
-                            <div *ngIf="column.htmlElement === 'checkbox'" class="media-body text-right icon-state">
-                              <label class="switch">
-                                <input type="checkbox"><span class="switch-state"></span>
-                              </label>
-                            </div>
 
-                            <div *ngIf="column.htmlElement === 'select-dropdown'">
-                              <ng-select [searchable]="true" 
-                              >
-                                  <ng-option [value]="true">Yes</ng-option>
-                                  <ng-option [value]="false">No</ng-option>
-                              </ng-select>
-                            </div>
+                          <div *ngIf="column.htmlElement === 'checkbox'" class="media-body text-right icon-state">
+                            <label class="switch">
+                              <input type="checkbox"><span class="switch-state"></span>
+                            </label>
+                          </div>
 
-                            <div *ngIf="column.htmlElement === 'multi-select-dropdown'">
-                              <ng-select [searchable]="true" [multiple]="true"
-                              >
-                                  <ng-option [value]="true">Yes</ng-option>
-                                  <ng-option [value]="false">No</ng-option>
+                          <div *ngIf="column.htmlElement === 'select-dropdown'">
+                            <ng-select [searchable]="true" [items]="column.dropDownItems" bindLabel="name" bindValue="id">
+                            </ng-select>
+                          </div>
 
+                          <div *ngIf="column.htmlElement === 'multi-select-dropdown'">
+                            <ng-select [searchable]="true" [multiple]="true"
+                             [items]="column.dropDownItems" 
+                             bindLabel="name" bindValue="id">
 
-                                  <!-- <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
-                                    <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/>
-                                     {{item.gender | uppercase}}
-                                </ng-template>
-                                <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
-                                    <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.name}}
-                                </ng-template> -->
-                              </ng-select>
-                            </div>
+                              <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
+                                <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" />
+                                Select All
+                              </ng-template>
+
+                              <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                                <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" />
+                                {{item.name}}
+                              </ng-template>
+                            </ng-select>
+                          </div>
 
                         </div>
                       </div>
