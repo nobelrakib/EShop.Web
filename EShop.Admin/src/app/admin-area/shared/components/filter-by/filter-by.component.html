@@ -56,8 +56,9 @@
                           </div>
 
                           <div *ngIf="column.htmlElement === 'multi-select-dropdown'">
-                            <ng-select [searchable]="true" [multiple]="true"
-                             [items]="column.dropDownItems" 
+                            <ng-select [searchable]="true" [multiple]="true" [closeOnSelect]="false"
+                             [items]="column.dropDownItems" [selectableGroup]="true"
+                             [selectableGroupAsModel]="false" groupBy="selectedAllGroup"
                              bindLabel="name" bindValue="id">
 
                               <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">

@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./filter-by.component.scss']
 })
 export class FilterByComponent implements OnInit {
-  
+
   @Input() filterByColumnSettings: IFilterBySetting[] = [];
   constructor() { }
 
@@ -15,7 +15,18 @@ export class FilterByComponent implements OnInit {
     console.log(newDate);
   }
   ngOnInit(): void {
-
+    this.selectAllForMultiSelectDropdown();
   }
+
+  selectAllForMultiSelectDropdown() {
+    this.filterByColumnSettings.map(element => {
+      if (element.dropDownItems) {
+        element.dropDownItems.map(item => {
+          item["selectedAllGroup"] = "selectedAllGroup";
+        });
+      }
+    });
+  }
+
 
 }
