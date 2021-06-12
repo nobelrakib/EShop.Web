@@ -17,7 +17,7 @@
                     <div class="form-group mb-0">
                       <div class="input-group pill-input-group">
                         <input class="form-control" placeholder="Search" type="text"
-                        [(ngModel)]="searchText" name="searchText">
+                        [(ngModel)]="searchText" name="searchText" (keyup)="getSearchText($event)">
                       </div>
                     </div>
                   </form>
@@ -38,7 +38,7 @@
 
                             <div *ngIf="column.htmlElement === 'date'">
                               <input *ngIf="column.inputType === 'date'" formControlName="{{column.labelText}}"
-                                class="form-control" placeholder="Datepicker" bsDatepicker [daysDisabled]="[6,0]">
+                                class="form-control" placeholder="Datepicker" bsDatepicker>
 
                               <input *ngIf="column.inputType === 'daterange'" formControlName="{{column.labelText}}"
                                 class="form-control" placeholder="Daterangepicker" bsDaterangepicker

@@ -73,6 +73,14 @@ export class RoleComponent implements OnInit {
     ]
   }
 
+  getSearchText(value){
+    console.log(value);
+  }
+
+  getFilterByResult(filterByResult){
+    console.log(filterByResult);
+  }
+
   loadRoles() {
     this.roleService.getRoles({
       ...this.page
