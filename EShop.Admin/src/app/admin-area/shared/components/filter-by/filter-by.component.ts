@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { IFilterBySetting } from './../../models/IFilterBySetting';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-filter-by',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilterByComponent implements OnInit {
 
+  @Input() filterByColumnSettings: IFilterBySetting[] = [];
   constructor() { }
 
-  ngOnInit(): void {
+  onDateChange(newDate: Date) {
+    console.log(newDate);
   }
+  ngOnInit(): void {
+    this.selectAllForMultiSelectDropdown();
+  }
+
+  selectAllForMultiSelectDropdown() {
+    this.filterByColumnSettings.map(element => {
+      if (element.dropDownItems) {
+        element.dropDownItems.map(item => {
+          item["selectedAllGroup"] = "selectedAllGroup";
+        });
+      }
+    });
+  }
+
 
 }

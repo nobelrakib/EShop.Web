@@ -1,3 +1,7 @@
+import { trigger } from '@angular/animations';
+import { ToastrService } from 'ngx-toastr';
+import { IRole } from 'src/app/shared/models/role';
+import { ActivatedRoute } from '@angular/router';
 import { RoleService } from './../services/role.service';
 import { IPermission } from './../../shared/models/permission';
 import { PermissionService } from './../services/permission.service';
@@ -11,46 +15,71 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 })
 export class RoleAddComponent implements OnInit {
 
+  pageTitle: string = "Add New Role";
   form: FormGroup;
-  websiteList: any = [
-    { id: 1, name: 'Google.com' },
-    { id: 2, name: 'Angular.com' },
-    { id: 3, name: 'Tutsmake.com' }
-  ];
-  permissions:IPermission[] =[];
-  
+  permissions: IPermission[] = [];
+  editState: boolean = false;
+  role: IRole;
+  permissionIds: number[] = [];
+
+  get permissionsFormArray() {
+    return this.form.controls.permissions as FormArray;
+  }
+  set permissionsFormArray(array: FormArray) {
+    this.form.controls.permissions = array;
+  }
+
   constructor(private formBuilder: FormBuilder,
-    private PermissionService:PermissionService,private roleService:RoleService) {
-    
+    private PermissionService: PermissionService, private roleService: RoleService,
+    private route: ActivatedRoute, private toastrService: ToastrService) {
+
   }
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.form = this.formBuilder.group({
-      rolename: ['', Validators.required],
-      permissions: this.formBuilder.array([], [Validators.required])
-    })
-    this.PermissionService.getPermissions().subscribe(response=>{
-         this.permissions=[...response]
-      
-    })
-    
+      rolename: ["", Validators.required],
+      permissions: this.formBuilder.array([], Validators.required)
+    });
+    const id = parseInt(this.route.snapshot.paramMap.get('id'));
+    await this.PermissionService.getPermissions().toPromise().then(response => {
+      this.permissions = [...response]
+    });
+    if (id) {
+      this.editState = true;
+      this.pageTitle = "Edit role"
+      await this.roleService.getById(id).toPromise().then((data) => {
+        this.role = data;
+        this.form.get('rolename').setValue(this.role.name);
+        this.role.rolePermissions.map(x => this.permissionIds.push(x.permissionId));
+
+      const selectedPermission: FormArray = this.form.get('permissions') as FormArray;
+      this.role.rolePermissions.forEach(x => selectedPermission.push(new FormControl({ id: x.permissionId.toString() })));
+      console.log(this.form.get('permissions'));
+      });
+    }
   }
-    
+
   onCheckboxChange(e) {
     const selectedPermission: FormArray = this.form.get('permissions') as FormArray;
-   
+
     if (e.target.checked) {
-      selectedPermission.push(new FormControl( {id: e.target.value}))
-    
+      selectedPermission.push(new FormControl({ id: e.target.value }))
+
     } else {
-       const index = selectedPermission.controls.findIndex(x => x.value["id"] === e.target.value);
-       selectedPermission.removeAt(index);
+      const index = selectedPermission.controls.findIndex(x => x.value["id"] === e.target.value);
+      selectedPermission.removeAt(index);
     }
-    console.log(this.form.get('permissions'))
-   
+    console.log(this.form.get('permissions'));
   }
-    
-  submit(){
-    this.roleService.addRoles(this.form.value).subscribe(res=>{
+
+  submit() {
+    if (!this.form.valid) {
+      return;
+    }
+    this.roleService.addRoles(this.form.value).subscribe(res => {
+      if (this.editState)
+        this.toastrService.success("Role updated successfully");
+      else
+        this.toastrService.success("Role created successfully");
 
     })
     console.log(this.permissions);

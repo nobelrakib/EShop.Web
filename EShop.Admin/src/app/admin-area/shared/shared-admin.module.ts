@@ -15,6 +15,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FilterByComponent } from './components/filter-by/filter-by.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -37,8 +39,9 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     BsDropdownModule.forRoot(),
     PaginationModule.forRoot(),
     NgxDatatableModule,
-    NgbModule
-
+    NgbModule,
+    BsDatepickerModule.forRoot(),
+    NgSelectModule
   ],
   exports: [
     HeaderComponent,

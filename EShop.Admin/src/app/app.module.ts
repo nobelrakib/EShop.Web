@@ -1,3 +1,4 @@
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
