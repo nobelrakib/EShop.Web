@@ -4,12 +4,14 @@ import { EShopAdminComponent } from './components/eshop-admin/eshop-admin.compon
 import {SharedAdminModule} from './shared/shared-admin.module';
 import { RoleComponent } from './role/role.component';
 import { RoleAddComponent } from './role-add/role-add.component';
+import { CategoryAddComponent } from './components/category-add/category-add.component';
 
 @NgModule({
     declarations: [
         EShopAdminComponent,
         RoleComponent,
         RoleAddComponent,
+        CategoryAddComponent,
     ],
     imports: [
         AdminRoutingModule,
