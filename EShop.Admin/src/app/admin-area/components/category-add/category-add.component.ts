@@ -49,58 +49,46 @@ export class CategoryAddComponent implements OnInit {
             if (!!category.subCategories && !!category.subCategories.length) {
 
               category.subCategories.forEach(subCategory => {
+
+                //  let treeModel = treeModels.find(x => x.id == subCategory.parentCategoryId);
+                function findObj(data, id) {
+                  for (var i in data) {
+                    if (i == 'id' && data[i] == id) return data
+                    if (typeof data[i] == 'object' && findObj(data[i], id)) return findObj(data[i], id)
+                  }
+                }
                 let treeModel = treeModels.find(x => x.id == subCategory.parentCategoryId);
-                // debugger;
-                treeModel.children.push({
-                  value: subCategory.name,
-                  id: subCategory.id,
-                  children: []
-                })
-                if (!!subCategory.subCategories) {
-                  getSubCategoriesFromCategory(subCategory.subCategories);//level 2
+
+
+                if (!!treeModel) {
+                  treeModel.children.push({
+                    value: subCategory.name,
+                    id: subCategory.id,
+                    children: []
+                  })
+
                 }
 
+
+                getSubCategoriesFromCategory(category.subCategories);//level 2
+
+
               })
-
-              // let treeModel = treeModels.find(x => x.id == category.parentCategoryId);
-              // if (!!treeModel) {
-              //   category.subCategories.forEach(x => {
-              //     treeModel.children.push({
-              //       value: x.name,
-              //       id: x.id
-              //     })
-              //   })
-
-              // }
-              // else {
-              //   category.subCategories.forEach(x => {
-              //     treeModels[0].children.push({
-              //       value: x.name,
-              //       id: x.id
-              //     })
-              //   })
-
-              // }
-
 
             }
             else {
               // debugger;
-              getSubCategoriesFromCategory(category.subCategories);//level 2
 
             }
+
 
           });
         }
         getSubCategoriesFromCategory(this.categories);//data
 
-        // this.categories.map(x => {
-        //   arr.push({ id: x.id, value: x.name });
-        // });
 
-        // let callbackCategories = (category: ICategory) => {
+        console.log(result);
 
-        // }
         console.log(treeModels);
         callback(treeModels);
 
@@ -109,38 +97,7 @@ export class CategoryAddComponent implements OnInit {
     }
   }
 
-  // "data": [
-  //   {
-  //     "id": 1,
-  //     "name": "electronics",
-  //     "description": "helpful for you",
-  //     "parentCategoryId": 0,
-  //     "subCategories": [
-  //       {
-  //         "id": 2,
-  //         "name": "laptop",
-  //         "description": "helpful for you",
-  //         "parentCategoryId": 1,
-  //         "subCategories": [
-  //           {
-  //             "id": 3,
-  //             "name": "dell",
-  //             "description": "helpful for you",
-  //             "parentCategoryId": 2,
-  //             "subCategories": []
-  //           }
-  //         ]
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     "id": 4,
-  //     "name": "Books",
-  //     "description": "Reading books",
-  //     "parentCategoryId": 0,
-  //     "subCategories": []
-  //   }
-  // ]
+
 
   constructor(private categoryService: CategoryService) { }
 
