@@ -61,7 +61,8 @@ export class CategoryAddComponent implements OnInit {
               category.subCategories.forEach(subCategory => {
 
                 let childTreeModel: TreeModel = { value: '' };
-                if (!!treeModel) {
+                treeModel.id === subCategory.parentCategoryId
+                if (!!treeModel && (treeModel.id === subCategory.parentCategoryId)) {
                   childTreeModel.id = subCategory.id;
                   childTreeModel.value = subCategory.name;
                   childTreeModel.children = [];
@@ -80,7 +81,7 @@ export class CategoryAddComponent implements OnInit {
 
           });
         }
-        //debugger;
+        // debugger;
         let treeModel: TreeModel = { value: '', children: [] }
         getSubCategoriesFromCategory(this.categories, treeModel);//data
 
