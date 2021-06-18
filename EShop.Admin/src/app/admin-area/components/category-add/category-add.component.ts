@@ -39,10 +39,20 @@ export class CategoryAddComponent implements OnInit {
         this.categories = result.data;
         let treeModels: TreeModel[] = [];
 
-        let getSubCategoriesFromCategory = (categories: ICategory[]) => {
+        let getSubCategoriesFromCategory = (categories: ICategory[], treeModel: TreeModel) => {
           categories.map(category => {
             if (category.parentCategoryId == 0) {
-              treeModels.push({ value: category.name, id: category.id, children: [] });//level 1
+              if (!!treeModel.id) {
+                treeModel = { value: category.name, id: category.id, children: [] }
+                treeModels.push(treeModel)
+
+              }
+              else {
+                treeModel.value = category.name;
+                treeModel.id = category.id;
+                treeModels.push(treeModel)
+              }
+
             }
 
 
@@ -50,41 +60,29 @@ export class CategoryAddComponent implements OnInit {
 
               category.subCategories.forEach(subCategory => {
 
-                //  let treeModel = treeModels.find(x => x.id == subCategory.parentCategoryId);
-                function findObj(data, id) {
-                  for (var i in data) {
-                    if (i == 'id' && data[i] == id) return data
-                    if (typeof data[i] == 'object' && findObj(data[i], id)) return findObj(data[i], id)
-                  }
-                }
-                let treeModel = treeModels.find(x => x.id == subCategory.parentCategoryId);
-
-
+                let childTreeModel: TreeModel = { value: '' };
                 if (!!treeModel) {
-                  treeModel.children.push({
-                    value: subCategory.name,
-                    id: subCategory.id,
-                    children: []
-                  })
+                  childTreeModel.id = subCategory.id;
+                  childTreeModel.value = subCategory.name;
+                  childTreeModel.children = [];
+                  treeModel.children.push(childTreeModel);
 
                 }
 
-
-                getSubCategoriesFromCategory(category.subCategories);//level 2
+                getSubCategoriesFromCategory(category.subCategories, childTreeModel);//level 2
 
 
               })
 
             }
-            else {
-              // debugger;
 
-            }
 
 
           });
         }
-        getSubCategoriesFromCategory(this.categories);//data
+        //debugger;
+        let treeModel: TreeModel = { value: '', children: [] }
+        getSubCategoriesFromCategory(this.categories, treeModel);//data
 
 
         console.log(result);
