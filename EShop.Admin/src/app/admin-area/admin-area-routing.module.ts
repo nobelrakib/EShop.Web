@@ -1,3 +1,4 @@
+import { CategoryAddComponent } from './components/category-add/category-add.component';
 import { RoleComponent } from './role/role.component';
 import { ContentComponent } from './components/content/content.component';
 import { NgModule, Component } from '@angular/core';
@@ -13,7 +14,7 @@ const routes: Routes = [
       { path: 'role', component: RoleComponent },
       { path: 'role-add', component: RoleAddComponent },
       { path: 'role-edit/:id', component: RoleAddComponent },
-
+      { path: 'category-add', component: CategoryAddComponent }
     ]
   }
   // {
