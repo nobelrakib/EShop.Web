@@ -59,7 +59,7 @@
                             <ng-select [searchable]="true" [multiple]="true" [closeOnSelect]="false"
                              [items]="column.dropDownItems" [selectableGroup]="true"
                              [selectableGroupAsModel]="false" groupBy="selectedAllGroup"
-                             bindLabel="name" bindValue="id">
+                             bindLabel="name" bindValue="id" class="multiselect-roles">
 
                               <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
                                 <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" />
