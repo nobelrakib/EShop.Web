@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import {AdminRoutingModule } from './admin-area-routing.module';
 import { EShopAdminComponent } from './components/eshop-admin/eshop-admin.component';
@@ -16,7 +17,6 @@ import { CategoryAddComponent } from './components/category-add/category-add.com
     imports: [
         AdminRoutingModule,
         SharedAdminModule,
-        
     ],
   })
   export class AdminModule { }

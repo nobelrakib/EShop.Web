@@ -16,6 +16,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FilterByComponent } from './components/filter-by/filter-by.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { TreeModule } from 'ng2-tree';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 
@@ -40,7 +42,9 @@ import { TreeModule } from 'ng2-tree';
     PaginationModule.forRoot(),
     NgxDatatableModule,
     NgbModule,
-    TreeModule
+    TreeModule,
+    BsDatepickerModule.forRoot(),
+    NgSelectModule
   ],
   exports: [
     HeaderComponent,
