@@ -15,8 +15,10 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FilterByComponent } from './components/filter-by/filter-by.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { TreeModule } from 'ng2-tree';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgSelectModule } from '@ng-select/ng-select';
+
 
 
 @NgModule({
@@ -40,6 +42,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     PaginationModule.forRoot(),
     NgxDatatableModule,
     NgbModule,
+    TreeModule,
     BsDatepickerModule.forRoot(),
     NgSelectModule
   ],
@@ -60,7 +63,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     BreadcrumbComponent,
     MegaMenuComponent,
     NgbModule,
-    FilterByComponent
+    FilterByComponent,
+    TreeModule
   ],
   entryComponents: []
 })
