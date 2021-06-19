@@ -38,6 +38,7 @@ export class CategoryAddComponent implements OnInit {
       this.categoryService.getCategories().toPromise().then((result) => {
         this.categories = result.data;
         let treeModels: TreeModel[] = [];
+        let treeModel: TreeModel = { value: '', children: [] }
 
         let getSubCategoriesFromCategory = (categories: ICategory[], treeModel: TreeModel) => {
           categories.map(category => {
@@ -45,53 +46,32 @@ export class CategoryAddComponent implements OnInit {
               if (!!treeModel.id) {
                 treeModel = { value: category.name, id: category.id, children: [] }
                 treeModels.push(treeModel)
-
               }
               else {
                 treeModel.value = category.name;
                 treeModel.id = category.id;
                 treeModels.push(treeModel)
               }
-
             }
 
-
             if (!!category.subCategories && !!category.subCategories.length) {
-
               category.subCategories.forEach(subCategory => {
 
                 let childTreeModel: TreeModel = { value: '' };
-                treeModel.id === subCategory.parentCategoryId
                 if (!!treeModel && (treeModel.id === subCategory.parentCategoryId)) {
                   childTreeModel.id = subCategory.id;
                   childTreeModel.value = subCategory.name;
                   childTreeModel.children = [];
                   treeModel.children.push(childTreeModel);
-
                 }
-
                 getSubCategoriesFromCategory(category.subCategories, childTreeModel);//level 2
 
-
               })
-
             }
-
-
-
           });
         }
-        // debugger;
-        let treeModel: TreeModel = { value: '', children: [] }
         getSubCategoriesFromCategory(this.categories, treeModel);//data
-
-
-        console.log(result);
-
-        console.log(treeModels);
         callback(treeModels);
-
-
       })
     }
   }
