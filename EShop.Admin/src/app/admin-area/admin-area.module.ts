@@ -6,6 +6,7 @@ import {SharedAdminModule} from './shared/shared-admin.module';
 import { RoleComponent } from './role/role.component';
 import { RoleAddComponent } from './role-add/role-add.component';
 import { CategoryAddComponent } from './components/category-add/category-add.component';
+import { CategoryListComponent } from './components/category-list/category-list.component';
 
 @NgModule({
     declarations: [
@@ -13,6 +14,7 @@ import { CategoryAddComponent } from './components/category-add/category-add.com
         RoleComponent,
         RoleAddComponent,
         CategoryAddComponent,
+        CategoryListComponent,
     ],
     imports: [
         AdminRoutingModule,
