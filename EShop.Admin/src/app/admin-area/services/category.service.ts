@@ -13,4 +13,8 @@ export class CategoryService {
   getCategories() {
     return this.http.get<ICategoryWithPaginationInfo>(this.categoryendpoint.getCategory)
   }
+
+  addCategory(model: any) {
+    return this.http.post(this.categoryendpoint.addCategory, model);
+  }
 }

@@ -7,5 +7,6 @@ import { Injectable } from '@angular/core';
 })
 export class CategoryEndpoints {
 
-    getCategory: string = ApiConstant.baseUrl + "Category/GetAll"
+    getCategory: string = ApiConstant.baseUrl + "Category/GetAll";
+    addCategory: string = ApiConstant.baseUrl + "Category/Create"
 }
