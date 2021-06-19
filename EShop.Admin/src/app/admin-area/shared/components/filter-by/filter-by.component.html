@@ -17,7 +17,7 @@
                     <div class="form-group mb-0">
                       <div class="input-group pill-input-group">
                         <input class="form-control" placeholder="Search" type="text"
-                          aria-label="Amount (to the nearest dollar)">
+                        [(ngModel)]="searchText" name="searchText" (keyup)="getSearchText($event)">
                       </div>
                     </div>
                   </form>
@@ -26,66 +26,61 @@
                 <ng-template ngbPanelContent>
 
                   <!-- here is all filter by component  -->
+                  <form [formGroup]="filterByForm" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                      <div class="col-md-6" *ngFor="let column of filterByColumnSettings">
+                        <div class="form-group row">
+                          <label class="col-sm-4 col-form-label">{{column.labelText}}</label>
+                          <div class="col-sm-8">
+                            <input *ngIf="column.htmlElement === 'input'" formControlName="{{column.labelText}}"
+                              class="form-control" id="url" type="{{column.inputType}}"
+                              placeholder="Enter {{column.labelText}}">
 
-                  <div class="row">
-                    <div class="col-md-6" *ngFor="let column of filterByColumnSettings">
-                      <div class="form-group row">
-                        <label class="col-sm-4 col-form-label">{{column.labelText}}</label>
-                        <div class="col-sm-8">
-                          <input *ngIf="column.htmlElement === 'input'" class="form-control" id="url"
-                            type="{{column.inputType}}" placeholder="Enter {{column.labelText}}">
+                            <div *ngIf="column.htmlElement === 'date'">
+                              <input *ngIf="column.inputType === 'date'" formControlName="{{column.labelText}}"
+                                class="form-control" placeholder="Datepicker" bsDatepicker>
 
-                          <div *ngIf="column.htmlElement === 'date'">
-                            <input *ngIf="column.inputType === 'date'" class="form-control" placeholder="Datepicker"
-                              bsDatepicker [daysDisabled]="[6,0]">
-
-                            <input *ngIf="column.inputType === 'daterange'" class="form-control"
-                              placeholder="Daterangepicker" bsDaterangepicker [daysDisabled]="[6,0]">
-                          </div>
+                              <input *ngIf="column.inputType === 'daterange'" formControlName="{{column.labelText}}"
+                                class="form-control" placeholder="Daterangepicker" bsDaterangepicker
+                                [daysDisabled]="[6,0]">
+                            </div>
 
 
-                          <div *ngIf="column.htmlElement === 'checkbox'" class="media-body text-right icon-state">
-                            <label class="switch">
-                              <input type="checkbox"><span class="switch-state"></span>
-                            </label>
-                          </div>
+                            <div *ngIf="column.htmlElement === 'checkbox'" class="media-body text-right icon-state">
+                              <label class="switch">
+                                <input type="checkbox" formControlName="{{column.labelText}}"><span
+                                  class="switch-state"></span>
+                              </label>
+                            </div>
 
-                          <div *ngIf="column.htmlElement === 'select-dropdown'">
-                            <ng-select [searchable]="true" [items]="column.dropDownItems" bindLabel="name" bindValue="id">
-                            </ng-select>
-                          </div>
+                            <div *ngIf="column.htmlElement === 'select-dropdown'">
+                              <ng-select [searchable]="true" [items]="column.dropDownItems" bindLabel="name"
+                                bindValue="id" formControlName="{{column.labelText}}">
+                              </ng-select>
+                            </div>
 
-                          <div *ngIf="column.htmlElement === 'multi-select-dropdown'">
-                            <ng-select [searchable]="true" [multiple]="true" [closeOnSelect]="false"
+                            <div *ngIf="column.htmlElement === 'multi-select-dropdown'">
+                              <ng-select [searchable]="true" [multiple]="true" [closeOnSelect]="false"
                              [items]="column.dropDownItems" [selectableGroup]="true"
-                             [selectableGroupAsModel]="false" groupBy="selectedAllGroup"
-                             bindLabel="name" bindValue="id">
+                             [selectableGroupAsModel]="false" groupBy="selectAllGroup"
+                             bindLabel="name" bindValue="id" formControlName="{{column.labelText}}">
+                              </ng-select>
+                            </div>
 
-                              <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
-                                <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" />
-                                Select All
-                              </ng-template>
-
-                              <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
-                                <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected" />
-                                {{item.name}}
-                              </ng-template>
-                            </ng-select>
                           </div>
-
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="row">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-2">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fa  fa-filter"></i> Search</button>
+                    <div class="row">
+                      <div class="col-md-4"></div>
+                      <div class="col-md-2">
+                        <button class="btn btn-primary" type="submit">
+                          <i class="fa  fa-filter"></i> Search</button>
 
+                      </div>
                     </div>
-                  </div>
+                  </form>
                 </ng-template>
               </ngb-panel>
             </ngb-accordion>

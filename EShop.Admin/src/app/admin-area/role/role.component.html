@@ -1,5 +1,8 @@
 <app-breadcrumb [items]="['Access Control', 'Roles']"></app-breadcrumb>
-<app-filter-by [filterByColumnSettings]="filterBySettings"></app-filter-by>
+<app-filter-by [filterByColumnSettings]="filterBySettings"
+(searchTextCallBackFn) = "getSearchText($event)"
+(filterByCallBackValue) = "getFilterByResult($event)"
+></app-filter-by>
 
 <div class="row">
   <div class="col-md-12">
