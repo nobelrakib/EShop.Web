@@ -62,7 +62,7 @@
                             <div *ngIf="column.htmlElement === 'multi-select-dropdown'">
                               <ng-select [searchable]="true" [multiple]="true" [closeOnSelect]="false"
                              [items]="column.dropDownItems" [selectableGroup]="true"
-                             [selectableGroupAsModel]="false" groupBy="selectAllGroup"
+                             [selectableGroupAsModel]="false" groupBy="selectAllGroup" class="multiselect-roles"
                              bindLabel="name" bindValue="id" formControlName="{{column.labelText}}">
                               </ng-select>
                             </div>
