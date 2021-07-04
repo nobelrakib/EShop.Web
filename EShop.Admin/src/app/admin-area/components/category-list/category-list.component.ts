@@ -13,55 +13,6 @@ export class CategoryListComponent implements OnInit {
 
   ColumnMode = ColumnMode;
 
-  // constructor(private cd: ChangeDetectorRef) {
-  //   this.fetch(data => {
-  //     data = data.slice(1, this.lastIndex);
-  //     this.rows = data.map(d => {
-  //       d.treeStatus = 'collapsed';
-  //       d.parentId = null;
-  //       return d;
-  //     });
-  //   });
-  // }
-  // ngOnInit(): void {
-  //   throw new Error("Method not implemented.");
-  // }
-
-  // fetch(cb) {
-  //   const req = new XMLHttpRequest();
-  //   req.open('GET', `assets/data/100k.json`);
-
-  //   req.onload = () => {
-  //     setTimeout(() => {
-  //       cb(JSON.parse(req.response));
-  //     }, 500);
-  //   };
-
-  //   req.send();
-  // }
-
-  // onTreeAction(event: any) {
-  //   const index = event.rowIndex;
-  //   const row = event.row;
-  //   if (row.treeStatus === 'collapsed') {
-  //     row.treeStatus = 'loading';
-  //     this.fetch(data => {
-  //       data = data.slice(this.lastIndex, this.lastIndex + 3).map(d => {
-  //         d.treeStatus = 'collapsed';
-  //         d.parentId = row.id;
-  //         return d;
-  //       });
-  //       this.lastIndex = this.lastIndex + 3;
-  //       row.treeStatus = 'expanded';
-  //       this.rows = [...this.rows, ...data];
-  //       this.cd.detectChanges();
-  //     });
-  //   } else {
-  //     row.treeStatus = 'collapsed';
-  //     this.rows = [...this.rows];
-  //     this.cd.detectChanges();
-  //   }
-  // }
 
   constructor(private categoryService: CategoryService) {
   }
@@ -69,10 +20,10 @@ export class CategoryListComponent implements OnInit {
     this.getCategories();
   }
 
-  getCategories(){
+  getCategories() {
     this.categoryService.getCategories().subscribe((result) => {
       this.rows = result.data;
-      
+
       this.rows = this.rows.map(d => {
         d.treeStatus = 'collapsed';
         d.parentId = null;
@@ -86,16 +37,40 @@ export class CategoryListComponent implements OnInit {
     const row = event.row;
     if (row.treeStatus === 'collapsed') {
       row.treeStatus = 'loading';
-        let data = row.subCategories.map(d => {
-          d.treeStatus = 'collapsed';
-          d.parentId = row.id;
-          return d;
-        });
-        row.treeStatus = 'expanded';
-        this.rows = [...this.rows, ...data];
-    } else {
+      let data = row.subCategories.map(d => {
+        d.treeStatus = 'collapsed';
+        d.parentId = row.id;
+        return d;
+      });
+      row.treeStatus = 'expanded';
+      this.rows = [...this.rows, ...data];
+    }
+    else {
       row.treeStatus = 'collapsed';
-      this.rows = [...this.rows];
+      let categoryIds = [];
+      let findChildCategoryIds = (category) => {
+
+        if (!!category.subCategories) {
+          category.subCategories.forEach(sc => {
+            categoryIds.push(sc.id);
+            findChildCategoryIds(sc);
+          });
+        }
+      }
+      console.log("category ids ", categoryIds);
+      findChildCategoryIds(row);
+      let rowsCopy = [...this.rows]
+
+      this.rows.forEach(x => {
+        let elm = categoryIds.includes(x.id);
+        if (elm) {
+          let index = rowsCopy.indexOf(x);
+          rowsCopy.splice(index, 1);
+        }
+      })
+
+      this.rows = [...rowsCopy];
+      console.log(this.rows)
     }
   }
 }
