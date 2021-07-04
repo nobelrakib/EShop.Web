@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { of, ReplaySubject } from 'rxjs';
 import { IUser, UserProfile } from '../../shared/models/user';
-import { AuthEndpoints } from 'src/app/core/api-endpoints/auth-endpoint';
+import { AuthEndpoints } from 'src/app/Shared/ApiEndpoints/auth-endpoint';
 
 @Injectable({
   providedIn: 'root'

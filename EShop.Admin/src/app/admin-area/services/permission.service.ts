@@ -1,5 +1,5 @@
 import { IPermission } from './../../shared/models/permission';
-import { AuthEndpoints } from '../../core/api-endpoints/auth-endpoint'
+import { AuthEndpoints } from '../../Shared/ApiEndpoints/auth-endpoint'
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 

@@ -1,6 +1,6 @@
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { LoadingBarModule } from '@ngx-loading-bar/core';
-import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { JwtInterceptor } from './Shared/Interceptors/jwt.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';

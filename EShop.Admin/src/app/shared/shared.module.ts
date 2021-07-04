@@ -12,13 +12,33 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 
 @NgModule({
-  declarations: [NavBarComponent, TextInputComponent, AlertComponent, LoaderComponent],
+  declarations: [NavBarComponent, TextInputComponent, AlertComponent, LoaderComponent,
+    HeaderComponent,
+    FooterComponent,
+    SidebarComponent,
+    ContentComponent,
+    FeatherIconsComponent,
+    BreadcrumbComponent,
+    MegaMenuComponent,
+    FilterByComponent],
   imports: [RouterModule,
     BsDropdownModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
     FormsModule,
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TranslateModule,
+    BsDropdownModule.forRoot(),
+    PaginationModule.forRoot(),
+    NgxDatatableModule,
+    NgbModule,
+    TreeModule,
+    BsDatepickerModule.forRoot(),
+    NgSelectModule
   ],
   exports: [
     NavBarComponent,
@@ -29,7 +49,25 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     ReactiveFormsModule,
     CommonModule,
     AlertComponent,
-    LoaderComponent
+    LoaderComponent,
+    HeaderComponent,
+    FooterComponent,
+    SidebarComponent,
+    ContentComponent,
+    FeatherIconsComponent,
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    PaginationModule,
+    TranslateModule,
+    BsDropdownModule,
+    NgxDatatableModule,
+    BreadcrumbComponent,
+    MegaMenuComponent,
+    NgbModule,
+    FilterByComponent,
+    TreeModule
   ]
 
 })

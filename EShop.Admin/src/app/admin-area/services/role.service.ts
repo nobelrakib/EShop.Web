@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IRoleWithPaginationInfo, IRole } from 'src/app/shared/models/role';
 import { IPagination } from 'src/app/shared/models/pagination';
-import { AuthEndpoints } from 'src/app/core/api-endpoints/auth-endpoint';
+import { AuthEndpoints } from 'src/app/Shared/ApiEndpoints/auth-endpoint';
 
 @Injectable({
   providedIn: 'root'
