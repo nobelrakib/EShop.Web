@@ -1,13 +1,13 @@
-import { IFilterBySetting } from './../shared/models/IFilterBySetting';
-import { HtmlElementEnum } from './../shared/enums/filterBySetting-enum';
+import { IFilterBySetting } from './../../Shared/Models/IFilterBySetting';
+import { IPagination } from './../../Shared/Models/pagination';
 import { ToastrService } from 'ngx-toastr';
 import { AlertService } from './../../shared/components/alert/alert.service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ColumnMode, DatatableComponent, SelectionType, SortType } from '@swimlane/ngx-datatable';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IRoleWithPaginationInfo, IRole } from '../../shared/models/role';
+import { HtmlElementEnum } from '../../Shared/enums/filterBySetting-enum';
 import { RoleService } from '../services/role.service';
-import { IPagination } from 'src/app/shared/models/pagination';
-import { IRoleWithPaginationInfo, IRole } from 'src/app/shared/models/role';
 
 @Component({
   selector: 'app-role',

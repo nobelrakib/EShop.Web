@@ -1,5 +1,5 @@
+import { AccountService } from './../account/account.service';
 import { Router } from '@angular/router';
-import { AccountService } from './../account.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';

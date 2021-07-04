@@ -1,11 +1,11 @@
-import { CategoryListComponent } from './components/category-list/category-list.component';
-import { CategoryAddComponent } from './components/category-add/category-add.component';
 import { RoleComponent } from './role/role.component';
-import { ContentComponent } from './components/content/content.component';
-import { NgModule, Component } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { EShopAdminComponent } from './components/eshop-admin/eshop-admin.component';
+import { EShopAdminComponent } from './eshop-admin/eshop-admin.component';
+import { ContentComponent } from './content/content.component';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 import { RoleAddComponent } from './role-add/role-add.component';
+import { CategoryAddComponent } from './category-add/category-add.component';
+import { CategoryListComponent } from './category-list/category-list.component';
 
 const routes: Routes = [
   {
@@ -25,8 +25,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [[RouterModule.forChild(routes)],
-  ],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AdminRoutingModule { }
+export class AdminLayoutRoutingModule { }

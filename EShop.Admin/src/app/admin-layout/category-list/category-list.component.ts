@@ -1,6 +1,6 @@
-import { CategoryService } from './../../services/category.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ColumnMode } from '@swimlane/ngx-datatable';
+import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-category-list',

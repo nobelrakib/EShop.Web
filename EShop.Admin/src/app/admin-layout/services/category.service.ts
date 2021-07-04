@@ -1,6 +1,6 @@
+import { CategoryEndpoints } from './../../Shared/ApiEndpoints/category-endpoints';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CategoryEndpoints } from '../../core/api-endpoints/category-endpoints';
 import { ICategoryWithPaginationInfo } from '../../shared/models/category';
 
 @Injectable({

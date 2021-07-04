@@ -1,7 +1,7 @@
+import { CategoryService } from './../services/category.service';
+import { ICategory } from './../../Shared/Models/category';
 import { ToastrService } from 'ngx-toastr';
-import { ICategory, ICategoryWithPaginationInfo } from './../../../shared/models/category';
-import { CategoryService } from './../../services/category.service';
-import { Data } from './../../../shared/models/data';
+
 import { ControlValueAccessor, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChildrenLoadingFunction, MenuItemSelectedEvent, Ng2TreeSettings, NodeEvent, NodeMenuItemAction, RenamableNode, TreeModel } from 'ng2-tree';
