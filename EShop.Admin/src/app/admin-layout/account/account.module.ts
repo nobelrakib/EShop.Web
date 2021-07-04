@@ -7,7 +7,6 @@ import { AccountRoutingModule } from './account-routing.module';
 @NgModule({
     declarations: [LoginComponent],
     imports: [
-        CommonModule,
         AccountRoutingModule,
         SharedModule
     ]

@@ -1,8 +1,9 @@
-import { AccountService } from './../../../admin-layout/account/account.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { NavService } from '../../services/nav.service';
 import { LayoutService } from '../../services/layout.service';
+import { AccountService } from 'src/app/admin-layout/account/account.service';
+import { NavService } from '../../services/nav.service';
+
 
 @Component({
   selector: 'app-header',

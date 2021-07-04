@@ -1,3 +1,4 @@
+
 import { SidebarComponent } from './Components/sidebar/sidebar.component';
 import { ContentComponent } from './../admin-layout/content/content.component';
 import { FeatherIconsComponent } from './Components/feather-icons/feather-icons.component';
@@ -5,16 +6,16 @@ import { FilterByComponent } from './Components/filter-by/filter-by.component';
 import { MegaMenuComponent } from './Components/mega-menu/mega-menu.component';
 import { BreadcrumbComponent } from './Components/breadcrumb/breadcrumb.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { AlertComponent } from './components/alert/alert.component';
-import { LoaderComponent } from './components/loader/loader.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
+import { AlertComponent } from './Components/alert/alert.component';
+import { LoaderComponent } from './Components/loader/loader.component';
+import { HeaderComponent } from './Components/header/header.component';
+import { FooterComponent } from './Components/footer/footer.component';
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TextInputComponent } from './components/text-input/text-input.component';
+import { TextInputComponent } from './Components/text-input/text-input.component';
 import { CommonModule } from "@angular/common";
 import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
@@ -25,7 +26,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { TreeModule } from 'ng2-tree';
 
 @NgModule({
-  declarations: [NavBarComponent, TextInputComponent, AlertComponent, LoaderComponent,
+  declarations: [
+    NavBarComponent, TextInputComponent, AlertComponent, LoaderComponent,
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
@@ -33,17 +35,13 @@ import { TreeModule } from 'ng2-tree';
     FeatherIconsComponent,
     BreadcrumbComponent,
     MegaMenuComponent,
-    FilterByComponent],
-  imports: [RouterModule,
-    BsDropdownModule.forRoot(),
+    FilterByComponent
+  ],
+  imports: [
     FormsModule,
-    ReactiveFormsModule,
-    CommonModule,
-    FormsModule,
-    CommonModule,
     RouterModule,
-    FormsModule,
     ReactiveFormsModule,
+    CommonModule,
     TranslateModule,
     BsDropdownModule.forRoot(),
     PaginationModule.forRoot(),
@@ -54,24 +52,21 @@ import { TreeModule } from 'ng2-tree';
     NgSelectModule
   ],
   exports: [
-    NavBarComponent,
-    RouterModule,
-    BsDropdownModule,
-    TextInputComponent,
     FormsModule,
+    RouterModule,
     ReactiveFormsModule,
     CommonModule,
+    
+    NavBarComponent,
+    TextInputComponent,
     AlertComponent,
     LoaderComponent,
+
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
     ContentComponent,
     FeatherIconsComponent,
-    CommonModule,
-    RouterModule,
-    FormsModule,
-    ReactiveFormsModule,
     PaginationModule,
     TranslateModule,
     BsDropdownModule,
@@ -82,7 +77,6 @@ import { TreeModule } from 'ng2-tree';
     FilterByComponent,
     TreeModule
   ]
-
 })
 
 export class SharedModule { }
