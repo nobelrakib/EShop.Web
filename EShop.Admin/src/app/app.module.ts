@@ -1,3 +1,4 @@
+import { LoadingInterceptor } from './shared/Interceptors/loading.interceptor';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { JwtInterceptor } from './shared/Interceptors/jwt.interceptor';
 import { AppRoutingModule } from './app-routing.module';
@@ -45,7 +46,9 @@ export function HttpLoaderFactory(http: HttpClient) {
   
   
   ],
-  providers: [    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  providers: [    
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
