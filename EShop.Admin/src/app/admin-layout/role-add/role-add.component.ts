@@ -1,12 +1,12 @@
 import { trigger } from '@angular/animations';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
-import { RoleService } from './../services/role.service';
-import { IPermission } from './../../shared/models/permission';
-import { PermissionService } from './../services/permission.service';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { IRole } from '../../shared/models/role';
+import { IPermission } from 'src/app/shared/Models/permission';
+import { IRole } from 'src/app/shared/Models/role';
+import { RoleService } from '../services/role.service';
+import { PermissionService } from '../services/permission.service';
 
 @Component({
   selector: 'app-role-add',

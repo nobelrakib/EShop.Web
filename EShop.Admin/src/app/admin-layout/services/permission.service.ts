@@ -1,7 +1,7 @@
-import { IPermission } from './../../shared/models/permission';
-import { AuthEndpoints } from '../../Shared/ApiEndpoints/auth-endpoint'
+import { AuthEndpoints } from '../../shared/ApiEndpoints/auth-endpoint'
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { IPermission } from 'src/app/shared/models/permission';
 
 @Injectable({
   providedIn: 'root'

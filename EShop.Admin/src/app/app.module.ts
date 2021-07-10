@@ -1,4 +1,5 @@
-import { JwtInterceptor } from './Shared/Interceptors/jwt.interceptor';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { JwtInterceptor } from './shared/Interceptors/jwt.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
@@ -7,7 +8,6 @@ import { AppComponent } from './app.component';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { SharedModule } from './Shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { LoadingBarModule } from '@ngx-loading-bar/core';

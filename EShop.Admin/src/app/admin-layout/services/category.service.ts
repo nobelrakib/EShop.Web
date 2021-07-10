@@ -1,7 +1,7 @@
-import { CategoryEndpoints } from './../../Shared/ApiEndpoints/category-endpoints';
+import { CategoryEndpoints } from './../../shared/ApiEndpoints/category-endpoints';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ICategoryWithPaginationInfo } from '../../shared/models/category';
+import { ICategoryWithPaginationInfo } from '../../shared/Models/category';
 
 @Injectable({
   providedIn: 'root'

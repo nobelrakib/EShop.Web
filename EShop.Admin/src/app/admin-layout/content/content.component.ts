@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, Injectable } from '@angular/core';
 import * as feather from 'feather-icons';
-import { LayoutService } from '../../shared/services/layout.service';
-import { NavService } from '../../shared/services/nav.service';
+import { NavService } from 'src/app/shared/services/nav.service';
+import { LayoutService } from 'src/app/shared/services/layout.service';
 
 @Component({
   selector: 'app-content',

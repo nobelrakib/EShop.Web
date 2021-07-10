@@ -1,9 +1,9 @@
-import { IPagination } from './../../Shared/Models/pagination';
+import { IPagination } from './../../shared/Models/pagination';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AuthEndpoints } from '../../Shared/ApiEndpoints/auth-endpoint';
-import { IRoleWithPaginationInfo, IRole } from '../../shared/models/role';
+import { AuthEndpoints } from '../../shared/ApiEndpoints/auth-endpoint';
+import { IRoleWithPaginationInfo, IRole } from 'src/app/shared/Models/role';
 
 @Injectable({
   providedIn: 'root'

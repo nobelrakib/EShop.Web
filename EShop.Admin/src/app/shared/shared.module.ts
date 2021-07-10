@@ -1,4 +1,3 @@
-
 import { SidebarComponent } from './Components/sidebar/sidebar.component';
 import { ContentComponent } from './../admin-layout/content/content.component';
 import { FeatherIconsComponent } from './Components/feather-icons/feather-icons.component';
