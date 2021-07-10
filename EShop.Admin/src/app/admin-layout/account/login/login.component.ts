@@ -11,8 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
 
-  public show: boolean = false;
-
+  public passwordShow: boolean = false;
   loginForm: FormGroup;
   returnUrl: string;
 
@@ -24,7 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   showPassword() {
-    this.show = !this.show;
+    this.passwordShow = !this.passwordShow;
   }
 
   createLoginForm() {
