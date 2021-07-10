@@ -1,19 +1,17 @@
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { LoadingBarModule } from '@ngx-loading-bar/core';
-import { JwtInterceptor } from './interceptors/jwt.interceptor';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { JwtInterceptor } from './shared/Interceptors/jwt.interceptor';
 import { AppRoutingModule } from './app-routing.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { HomeComponent } from './admin-layout/home/home.component';
 import { AppComponent } from './app.component';
-import {SharedModule} from './shared/shared.module';
-import { HomeComponent } from './pages/home/home.component';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { ToastrModule } from 'ngx-toastr';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { LoadingBarModule } from '@ngx-loading-bar/core';
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
@@ -26,12 +24,9 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule,
     SharedModule,
     ToastrModule.forRoot(),
     TranslateModule.forRoot({
@@ -47,6 +42,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     // LoadingBarRouterModule,
     // for Core use:
     LoadingBarModule
+  
   
   ],
   providers: [    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
