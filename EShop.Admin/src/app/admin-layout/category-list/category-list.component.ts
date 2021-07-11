@@ -1,3 +1,4 @@
+import { AppPermissions } from './../../shared/Constants/app-permissions';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { CategoryService } from '../services/category.service';
@@ -8,9 +9,9 @@ import { CategoryService } from '../services/category.service';
   styleUrls: ['./category-list.component.scss']
 })
 export class CategoryListComponent implements OnInit {
+  public permissionNames= AppPermissions;
   rows = [];
   lastIndex = 15;
-
   ColumnMode = ColumnMode;
 
 
