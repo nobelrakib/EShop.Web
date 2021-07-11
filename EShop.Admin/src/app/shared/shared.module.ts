@@ -1,3 +1,4 @@
+import { PermissionCheckPipe } from './Pipes/permission-check.pipe';
 import { SidebarComponent } from './Components/sidebar/sidebar.component';
 import { ContentComponent } from './../admin-layout/content/content.component';
 import { FeatherIconsComponent } from './Components/feather-icons/feather-icons.component';
@@ -6,7 +7,6 @@ import { MegaMenuComponent } from './Components/mega-menu/mega-menu.component';
 import { BreadcrumbComponent } from './Components/breadcrumb/breadcrumb.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { AlertComponent } from './Components/alert/alert.component';
-import { LoaderComponent } from './Components/loader/loader.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { NgModule } from "@angular/core";
@@ -23,10 +23,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TreeModule } from 'ng2-tree';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
-    NavBarComponent, TextInputComponent, AlertComponent, LoaderComponent,
+    NavBarComponent, TextInputComponent, AlertComponent,
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
@@ -34,7 +35,8 @@ import { TreeModule } from 'ng2-tree';
     FeatherIconsComponent,
     BreadcrumbComponent,
     MegaMenuComponent,
-    FilterByComponent
+    FilterByComponent,
+    PermissionCheckPipe
   ],
   imports: [
     FormsModule,
@@ -48,7 +50,8 @@ import { TreeModule } from 'ng2-tree';
     NgbModule,
     TreeModule,
     BsDatepickerModule.forRoot(),
-    NgSelectModule
+    NgSelectModule,
+    NgxSpinnerModule
   ],
   exports: [
     FormsModule,
@@ -59,7 +62,6 @@ import { TreeModule } from 'ng2-tree';
     NavBarComponent,
     TextInputComponent,
     AlertComponent,
-    LoaderComponent,
 
     HeaderComponent,
     FooterComponent,
@@ -74,7 +76,9 @@ import { TreeModule } from 'ng2-tree';
     MegaMenuComponent,
     NgbModule,
     FilterByComponent,
-    TreeModule
+    TreeModule,
+    NgxSpinnerModule, 
+    PermissionCheckPipe
   ]
 })
 

@@ -18,8 +18,11 @@
           </select> -->
                 </div>
                 <h3 style="display: inline;" class="card-title">Categories</h3>
-                <a style="display: inline; float: right;margin-top: 0" routerLink="/admin/category-add"
-                    class="space-generator btn btn-outline-primary mr-2">Add Category</a>
+             
+                <button [hidden]= "permissionNames.AddRoles | permissionCheck"
+                style="display: inline; float: right;margin-top: 0" type="button"routerLink="/admin/category-add"
+                class="btn space-generator btn btn-outline-primary mr-2"
+                >Add Category</button>
 
             </div>
             <div class="card-body " style="padding-top: 0;">

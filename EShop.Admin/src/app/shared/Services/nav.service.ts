@@ -84,7 +84,7 @@ export class NavService implements OnDestroy {
 		},
 		{
 			title: 'Catalog', icon: 'home', type: 'sub', badgeType: 'success', active: false, children: [
-				{ path: 'javascript:void(0);', title: 'Categories', type: 'link' },
+				{ path: 'javascript:void(0);', title: 'Categories', type: 'extLink' },
 				{ path: 'javascript:void(0);', title: 'Products', type: 'extLink' }
 			]
 		},
