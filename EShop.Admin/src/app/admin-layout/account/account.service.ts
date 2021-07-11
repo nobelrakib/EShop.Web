@@ -22,6 +22,7 @@ export class AccountService {
         if (user) {
           localStorage.setItem('token', user.token);
           localStorage.setItem('userProfile', JSON.stringify(user.userProfile));
+          localStorage.setItem('permissions', JSON.stringify(user.permissions));
 
           this.currentUserSource.next(user.userProfile);
         }

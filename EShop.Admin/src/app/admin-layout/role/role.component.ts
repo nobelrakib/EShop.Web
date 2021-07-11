@@ -1,3 +1,4 @@
+import { AppPermissions } from './../../shared/Constants/app-permissions';
 import { IFilterBySetting } from './../../shared/Models/IFilterBySetting';
 import { IPagination } from './../../shared/Models/pagination';
 import { ToastrService } from 'ngx-toastr';
@@ -8,7 +9,6 @@ import { IRoleWithPaginationInfo, IRole } from 'src/app/shared/Models/role';
 import { HtmlElementEnum } from 'src/app/shared/enums/filterBySetting-enum';
 import { AlertService } from 'src/app/shared/Components/alert/alert.service';
 import { RoleService } from '../services/role.service';
-
 @Component({
   selector: 'app-role',
   templateUrl: './role.component.html',
@@ -20,6 +20,7 @@ export class RoleComponent implements OnInit {
   @ViewChild('slTemplate', { static: true }) slTemplate: TemplateRef<any>;
   @ViewChild('table') table: DatatableComponent;
 
+  public permissionNames = AppPermissions;
   pageTitle: string = 'Users';
   rolesWithPaginatedInfo: IRoleWithPaginationInfo[] = [];
   roles: IRole[] = []

@@ -1,3 +1,4 @@
+import { PermissionCheckPipe } from './Pipes/permission-check.pipe';
 import { SidebarComponent } from './Components/sidebar/sidebar.component';
 import { ContentComponent } from './../admin-layout/content/content.component';
 import { FeatherIconsComponent } from './Components/feather-icons/feather-icons.component';
@@ -34,7 +35,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     FeatherIconsComponent,
     BreadcrumbComponent,
     MegaMenuComponent,
-    FilterByComponent
+    FilterByComponent,
+    PermissionCheckPipe
   ],
   imports: [
     FormsModule,
@@ -75,7 +77,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     NgbModule,
     FilterByComponent,
     TreeModule,
-    NgxSpinnerModule
+    NgxSpinnerModule, 
+    PermissionCheckPipe
   ]
 })
 

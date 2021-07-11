@@ -15,14 +15,12 @@ export class AppComponent {
 
   }
   ngOnInit(): void {
-
     this.setCurrentUser();
   }
 
   setCurrentUser() {
     const user = JSON.parse(localStorage.getItem('userProfile'));
     if (user) {
-
       this.accountService.setCurrentUser(user as UserProfile);
       console.log(user)
     }

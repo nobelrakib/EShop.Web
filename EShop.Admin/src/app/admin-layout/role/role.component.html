@@ -22,8 +22,12 @@
           </select>
         </div>
         <h3 style="display: inline;" class="card-title">Roles</h3>
-        <a style="display: inline; float: right;margin-top: 0" routerLink="/admin/role-add"
-          class="space-generator btn btn-outline-primary mr-2">Add Role</a>
+        <!-- <a style="display: inline; float: right;margin-top: 0" routerLink="/admin/role-add"
+          class="space-generator btn btn-outline-primary mr-2">Add Role</a> -->
+        <button [hidden]= "permissionNames.AddRoles | permissionCheck"
+        style="display: inline; float: right;margin-top: 0" type="button" routerLink="/admin/role-add"
+        class="btn space-generator btn btn-outline-primary mr-2"
+        >Add Role</button>
 
       </div>
       <div class="card-body " style="padding-top: 0;">
