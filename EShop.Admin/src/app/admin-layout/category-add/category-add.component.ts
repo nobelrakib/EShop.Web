@@ -110,6 +110,7 @@ export class CategoryAddComponent implements OnInit {
 
   public onNodeSelected(e: NodeEvent): void {
     this.form.get('parentCategoryId').setValue(e.node.id);
+    CategoryAddComponent.logEvent(e, 'Unselected');
   }
 
   public onNodeUnselected(e: NodeEvent): void {
