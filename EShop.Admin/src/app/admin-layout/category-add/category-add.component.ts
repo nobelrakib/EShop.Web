@@ -13,12 +13,13 @@ import { CategoryService } from '../services/category.service';
 })
 export class CategoryAddComponent implements OnInit {
 
+
   categories: ICategory[] = [];
   form: FormGroup;
 
   public categoryModel: TreeModel = {
     value: 'Category Tree',
-
+    id: 0,
     settings: {
       isCollapsedOnInit: true
     },
@@ -26,36 +27,6 @@ export class CategoryAddComponent implements OnInit {
     loadChildren: (callback) => {
       this.getAllCategories(callback);
     }
-  }
-
-  getAllCategories(callback) {
-    this.categoryService.getCategories().toPromise().then((result) => {
-      this.categories = result.data;
-      let treeModels: TreeModel[] = [];
-
-      this.categories.map(x => {
-        treeModels.push({
-          id: x.id,
-          value: x.name,
-          children: this.getSubCategories(x.subCategories)
-        });
-      });
-      callback(treeModels);
-    })
-
-  }
-
-  getSubCategories(subCategories: ICategory[]) {
-    let subCategoriesTreeModels: TreeModel[] = [];
-
-    subCategories.map(subCategory => {
-      subCategoriesTreeModels.push({
-        id: subCategory.id,
-        value: subCategory.name,
-        children: this.getSubCategories(subCategory.subCategories)
-      });
-    });
-    return subCategoriesTreeModels;
   }
 
   constructor(private formBuilder: FormBuilder, private toasterService: ToastrService,
@@ -92,6 +63,40 @@ export class CategoryAddComponent implements OnInit {
     })
   }
 
+  getAllCategories(callback) {
+    this.categoryService.getCategories().toPromise().then((result) => {
+      this.categories = result.data;
+      let treeModels: TreeModel[] = [];
+
+      this.categories.map(x => {
+        treeModels.push({
+          id: x.id,
+          value: x.name,
+          children: this.getSubCategories(x.subCategories)
+        });
+      });
+      callback(treeModels);
+    })
+
+  }
+
+  getSubCategories(subCategories: ICategory[]) {
+    let subCategoriesTreeModels: TreeModel[] = [];
+
+    subCategories.map(subCategory => {
+      subCategoriesTreeModels.push({
+        id: subCategory.id,
+        value: subCategory.name,
+        children: this.getSubCategories(subCategory.subCategories)
+      });
+    });
+    return subCategoriesTreeModels;
+  }
+
+  public onNodeSelected(e: NodeEvent): void {
+    this.form.get('parentCategoryId').setValue(e.node.id);
+  }
+
   public onNodeRemoved(e: NodeEvent): void {
     CategoryAddComponent.logEvent(e, 'Removed');
   }
@@ -110,8 +115,9 @@ export class CategoryAddComponent implements OnInit {
 
   public onNodeSelected(e: NodeEvent): void {
     this.form.get('parentCategoryId').setValue(e.node.id);
-    CategoryAddComponent.logEvent(e, 'Unselected');
   }
+
+  
 
   public onNodeUnselected(e: NodeEvent): void {
     CategoryAddComponent.logEvent(e, 'Unselected');
