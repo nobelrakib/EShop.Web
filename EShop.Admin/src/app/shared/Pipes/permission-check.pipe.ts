@@ -15,6 +15,6 @@ export class PermissionCheckPipe implements PipeTransform {
         if (!!permissions) {
             return !(permissions.includes(permission));
         }
-        return false;
+        return true;
     }
 }
