@@ -1,6 +1,6 @@
 import { IUser, UserProfile } from './shared/models/user';
 import { Component, PLATFORM_ID, Inject } from '@angular/core';
-import { AccountService } from './pages/account/account.service';
+import { AccountService } from './admin-layout/account/account.service';
 
 
 @Component({
@@ -15,14 +15,12 @@ export class AppComponent {
 
   }
   ngOnInit(): void {
-
     this.setCurrentUser();
   }
 
   setCurrentUser() {
     const user = JSON.parse(localStorage.getItem('userProfile'));
     if (user) {
-
       this.accountService.setCurrentUser(user as UserProfile);
       console.log(user)
     }

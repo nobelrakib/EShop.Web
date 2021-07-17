@@ -1,0 +1,64 @@
+<app-breadcrumb [items]="['Access Control', 'Roles']"></app-breadcrumb>
+<app-filter-by [filterByColumnSettings]="filterBySettings"
+(searchTextCallBackFn) = "getSearchText($event)"
+(filterByCallBackValue) = "getFilterByResult($event)"
+></app-filter-by>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+
+      <div class="card-header" style="padding-bottom: 0;">
+
+        <div>
+          <label for="per-page">
+            Per Page:
+          </label>
+          <select id="per-page" (change)="onLimitChange($event.target.value)">
+            <option *ngFor="let option of pageLimitOptions" [value]="option.value"
+              [selected]="option.value == currentPageLimit">
+              {{ option.value }}
+            </option>
+          </select>
+        </div>
+        <h3 style="display: inline;" class="card-title">Roles</h3>
+        <!-- <a style="display: inline; float: right;margin-top: 0" routerLink="/admin/role-add"
+          class="space-generator btn btn-outline-primary mr-2">Add Role</a> -->
+        <button [hidden]= "permissionNames.AddRoles | permissionCheck"
+        style="display: inline; float: right;margin-top: 0" type="button" routerLink="/admin/role-add"
+        class="btn space-generator btn btn-outline-primary mr-2"
+        >Add Role</button>
+
+      </div>
+      <div class="card-body " style="padding-top: 0;">
+        <div class="row">
+          <div class="col-md-12 position-relative">
+           <ngx-datatable #table class="bootstrap" [columns]="columns" [rows]="roles" [columnMode]="columnMode.force"
+              [headerHeight]="50" rowHeight="auto">
+
+              <ng-template #statusTemplate let-row="row" ngx-datatable-row-detail-template>
+                <div style="display: inline-block;">
+                  <a style="display: inline;padding-left: 0" class="dropdown-item mr-2" (click)="editRole(row)">
+                    <span><i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></span>
+                  </a>
+                  <a class="mr-2 cursor-pointer">
+                    <span><i class="fa fa-2x fa-trash" (click)="removeRole(row.id)" aria-hidden="true"></i></span>
+                  </a>
+                </div>
+              </ng-template>
+            </ngx-datatable>
+            <div class="d-flex justify-content-end">
+              <pagination [boundaryLinks]="true" [totalItems]="page.total" [itemsPerPage]="page.pageSize"
+                (pageChanged)="paginate($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+                lastText="&raquo;">
+              </pagination>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- /.container-fluid -->

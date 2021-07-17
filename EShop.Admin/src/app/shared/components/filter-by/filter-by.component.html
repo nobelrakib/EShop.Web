@@ -1,0 +1,92 @@
+<div class="faq-wrap">
+  <div class="row">
+    <div class="col-lg-12 mt-3">
+      <div class="row default-according style-1 faq-accordion" id="accordionoc">
+        <div class="col-xl-12">
+          <!-- <div class="faq-title">
+                <h6>Filter</h6>
+              </div> -->
+          <div class="card">
+            <ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
+              <ngb-panel>
+                <ng-template ngbPanelTitle>
+                  <div class="mr-5 ml-3 ">
+                    <h4>Filter By </h4>
+                  </div>
+                  <form class="w-75 ml-3 float-right">
+                    <div class="form-group mb-0">
+                      <div class="input-group pill-input-group">
+                        <input class="form-control" placeholder="Search" type="text"
+                        [(ngModel)]="searchText" name="searchText" (keyup)="getSearchText($event)">
+                      </div>
+                    </div>
+                  </form>
+                </ng-template>
+
+                <ng-template ngbPanelContent>
+
+                  <!-- here is all filter by component  -->
+                  <form [formGroup]="filterByForm" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                      <div class="col-md-6" *ngFor="let column of filterByColumnSettings">
+                        <div class="form-group row">
+                          <label class="col-sm-4 col-form-label">{{column.labelText}}</label>
+                          <div class="col-sm-8">
+                            <input *ngIf="column.htmlElement === 'input'" formControlName="{{column.labelText}}"
+                              class="form-control" id="url" type="{{column.inputType}}"
+                              placeholder="Enter {{column.labelText}}">
+
+                            <div *ngIf="column.htmlElement === 'date'">
+                              <input *ngIf="column.inputType === 'date'" formControlName="{{column.labelText}}"
+                                class="form-control" placeholder="Datepicker" bsDatepicker>
+
+                              <input *ngIf="column.inputType === 'daterange'" formControlName="{{column.labelText}}"
+                                class="form-control" placeholder="Daterangepicker" bsDaterangepicker
+                                [daysDisabled]="[6,0]">
+                            </div>
+
+
+                            <div *ngIf="column.htmlElement === 'checkbox'" class="media-body text-right icon-state">
+                              <label class="switch">
+                                <input type="checkbox" formControlName="{{column.labelText}}"><span
+                                  class="switch-state"></span>
+                              </label>
+                            </div>
+
+                            <div *ngIf="column.htmlElement === 'select-dropdown'">
+                              <ng-select [searchable]="true" [items]="column.dropDownItems" bindLabel="name"
+                                bindValue="id" formControlName="{{column.labelText}}">
+                              </ng-select>
+                            </div>
+
+                            <div *ngIf="column.htmlElement === 'multi-select-dropdown'">
+                              <ng-select [searchable]="true" [multiple]="true" [closeOnSelect]="false"
+                             [items]="column.dropDownItems" [selectableGroup]="true"
+                             [selectableGroupAsModel]="false" groupBy="selectAllGroup" class="multiselect-roles"
+                             bindLabel="name" bindValue="id" formControlName="{{column.labelText}}">
+                              </ng-select>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4"></div>
+                      <div class="col-md-2">
+                        <button class="btn btn-primary" type="submit">
+                          <i class="fa  fa-filter"></i> Search</button>
+
+                      </div>
+                    </div>
+                  </form>
+                </ng-template>
+              </ngb-panel>
+            </ngb-accordion>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
