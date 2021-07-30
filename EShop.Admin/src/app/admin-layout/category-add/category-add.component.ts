@@ -18,10 +18,18 @@ export class CategoryAddComponent implements OnInit {
   form: FormGroup;
 
   public categoryModel: TreeModel = {
-    value: 'Category Tree',
+    value: 'Root category',
     id: 0,
     settings: {
-      isCollapsedOnInit: true
+      'static': true,
+      'rightMenu': true,
+      'leftMenu': true,
+      'cssClasses': {
+        'expanded': 'fa fa-caret-down fa-lg',
+        'collapsed': 'fa fa-caret-right fa-lg',
+        'leaf': 'fa fa-lg',
+        'empty': 'fa fa-caret-right disabled'
+      },
     },
     children: [],
     loadChildren: (callback) => {
@@ -87,7 +95,7 @@ export class CategoryAddComponent implements OnInit {
       subCategoriesTreeModels.push({
         id: subCategory.id,
         value: subCategory.name,
-        children: this.getSubCategories(subCategory.subCategories)
+        children: this.getSubCategories(subCategory.subCategories),
       });
     });
     return subCategoriesTreeModels;
