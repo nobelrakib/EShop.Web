@@ -5,6 +5,7 @@ import { ControlValueAccessor, FormBuilder, FormGroup, Validators } from '@angul
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChildrenLoadingFunction, MenuItemSelectedEvent, Ng2TreeSettings, NodeEvent, NodeMenuItemAction, RenamableNode, TreeModel } from 'ng2-tree';
 import { CategoryService } from '../services/category.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-category-add',
@@ -38,7 +39,7 @@ export class CategoryAddComponent implements OnInit {
   }
 
   constructor(private formBuilder: FormBuilder, private toasterService: ToastrService,
-    private categoryService: CategoryService) { }
+    private categoryService: CategoryService, private location:Location) { }
 
   public settings: Ng2TreeSettings = {
     rootIsVisible: false,
@@ -68,6 +69,7 @@ export class CategoryAddComponent implements OnInit {
   submit() {
     this.categoryService.addCategory(this.form.value).subscribe(res => {
       this.toasterService.success("category successfully added");
+      this.location.back();
     })
   }
 
