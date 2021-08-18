@@ -1,0 +1,16 @@
+.tree-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  :host /deep/ .fa {
+    cursor: pointer;
+  }
+  :host /deep/ .fa.disabled {
+    cursor: inherit;
+    color: #757575;
+  }
+
+  .node-name{
+    cursor: pointer;
+  }

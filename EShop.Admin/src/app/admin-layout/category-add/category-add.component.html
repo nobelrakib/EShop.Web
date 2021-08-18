@@ -1,15 +1,47 @@
 <app-breadcrumb [items]="['Category', 'Categories','Add Category']"></app-breadcrumb>
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-header">
-                    <h5>Add Category</h5>
-                </div>
-                <div class="card-body">
-                    <form class="theme-form" [formGroup]="form" (ngSubmit)="submit()">
 
-                        <div class="form-group row">
+    <div class="card">
+        <div class="card-header">
+            <h5>Add Category</h5>
+        </div>
+        <div class="card-body">
+            <form class="theme-form" [formGroup]="form" (ngSubmit)="submit()">
+
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <label class="col-form-label">Category name</label>
+                        <input class="form-control" formControlName="name" type="text"
+                            placeholder="Enter category name">
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="col-form-label">Description</label>
+                        <textarea class="form-control" formControlName="description" rows="4" cols="50"
+                            placeholder="Enter description here"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <label class="col-form-label">Parent category</label>
+                    </div>
+                    <div class="col-md-6 tree-content">
+                        <tree #treeFonts [tree]="categoryModel" [settings]="{rootIsVisible: true}"
+                            (menuItemSelected)="onMenuItemSelected($event)"
+                            (nodeRemoved)="onNodeRemoved($event)" (nodeRenamed)="onNodeRenamed($event)"
+                            (nodeSelected)="onNodeSelected($event)" (nodeMoved)="onNodeMoved($event)"
+                            (nodeCreated)="onNodeCreated($event)" (nodeExpanded)="onNodeExpanded($event)"
+                            (nodeCollapsed)="onNodeCollapsed($event)">
+                            <ng-template let-node>
+                                <i class="fa {{node.icon}}"></i>
+                                <span class="node-name" [innerHTML]="node.value"></span>
+                            </ng-template>
+                        </tree>
+                        
+                    </div>
+                </div>
+
+                <!-- <div class="form-group row">
 
                             <label class="col-sm-1 col-form-label">Category Name</label>
                             <div class="col-sm-4">
@@ -35,17 +67,133 @@
                                     (nodeCollapsed)="onNodeCollapsed($event)">
                                 </tree>
                             </div>
-                        </div>
+                        </div> -->
 
 
-                        <div class="card-footer">
-                            <button class="btn btn-primary mr-1" [disabled]="!form.valid" type="submit">Submit</button>
-                            <button class="btn btn-secondary">Cancel</button>
-                        </div>
-                    </form>
+                <div class="card-footer">
+                    <button class="btn btn-primary mr-1" [disabled]="!form.valid" type="submit">Save</button>
                 </div>
-
-            </div>
+            </form>
         </div>
+
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+<div class="tree-demo-app">
+    <div class="tree-container">
+        <div class="tree-info">
+            <p class="tree-title">Fonts tree</p>
+        </div>
+        <div class="tree-content">
+            <tree #treeFonts
+                  [tree]="fonts"
+                  [settings]="{rootIsVisible: false}"
+                  (menuItemSelected)="onMenuItemSelected($event)"
+                  (nodeRemoved)="onNodeRemoved($event)"
+                  (nodeRenamed)="onNodeRenamed($event)"
+                  (nodeSelected)="onNodeSelected($event)"
+                  (nodeMoved)="onNodeMoved($event)"
+                  (nodeCreated)="onNodeCreated($event)"
+                  (nodeExpanded)="onNodeExpanded($event)"
+                  (nodeCollapsed)="onNodeCollapsed($event)">
+            </tree>
+        </div>
+    </div>
+    <div class="tree-container">
+        <div class="tree-info">
+            <p class="tree-title">Programming languages tree</p>
+            <p class="notice">this tree is loaded asynchronously</p>
+        </div>
+        <div class="tree-content">
+            <tree [tree]="pls"
+                  [settings]="disabledCheckboxesSettings"
+                  (nodeRemoved)="onNodeRemoved($event)"
+                  (nodeRenamed)="onNodeRenamed($event)"
+                  (nodeSelected)="onNodeSelected($event)"
+                  (nodeMoved)="onNodeMoved($event)"
+                  (nodeCreated)="onNodeCreated($event)">
+            </tree>
+        </div>
+    </div>
+    <div class="tree-container tree-container--with-controls">
+        <div class="tree-info">
+            <p class="tree-title">Directory/File structure</p>
+            <p class="notice">this tree has advanced configurations</p>
+        </div>
+        <div class="tree-content">
+            <tree #treeFFS
+                  [tree]="ffs"
+                  (nodeRemoved)="onNodeRemoved($event)"
+                  (nodeRenamed)="onNodeRenamed($event)"
+                  (nodeSelected)="onNodeSelected($event)"
+                  (nodeUnselected)="onNodeUnselected($event)"
+                  (nodeMoved)="onNodeMoved($event)"
+                  (nodeCreated)="onNodeFFSCreated($event)"
+                  (nodeExpanded)="onNodeExpanded($event)"
+                  (nodeCollapsed)="onNodeCollapsed($event)"
+                  [settings]="settings">
+            </tree>
+        </div>
+        <div class="tree-controlls">
+            <p class="notice">Tree API exposed via TreeController</p>
+            <button button (click)="handleActionOnFFS(21, 'expandToParent')">Select 'unicode.pf2' up to root</button>
+            <button button (click)="handleActionOnFFS(13, 'select')">Select 'boot' node</button>
+            <button button (click)="handleActionOnFFS(13, 'unselect')">Unselect 'boot' node</button>
+            <button button (click)="handleActionOnFFS(13, 'allowSelection')">Allow selection of the 'boot' node</button>
+            <button button (click)="handleActionOnFFS(13, 'forbidSelection')">Forbid selection of the 'boot' node</button>
+            <button button (click)="handleActionOnFFS(2, 'collapse')">Collapse 'bin' node</button>
+            <button button (click)="handleActionOnFFS(2, 'expand')">Expand 'bin' node</button>
+            <button button (click)="renameFFS(21)">Rename 'unicode.pf2' to 'unicode.pf'</button>
+            <button button (click)="handleActionOnFFS(12, 'remove')">Remove 'nano'</button>
+            <button button (click)="handleActionOnFFS(52, 'reloadChildren')">Reload Music's children</button>
+            <button button (click)="setChildrenFFS(36)">Set 'etc' children</button>
+            <button button (click)="addChildFFS(2, {value: 'ping'})">Add a child with name 'ping' to 'bin'</button>
+            <button button (click)="addChildFFS(22, {value: 'lost'})">Add a child with name 'lost' to 'lost+found'</button>
+            <button button (click)="addChildFFS(22, {value: 'found', children: []})">Add a child with name 'found' to 'lost+found'</button>
+            <button button (click)="addChildFFS(36, {value: 'found', children: []})">Add a child with name 'found' to 'etc'</button>
+            <button button (click)="addChildFFS(78, {value: 'Voodo People'})">Add a child with name 'Voodo People' to '2Cellos'</button>
+            <button button (click)="checkFolder(52)">Check Music folder</button>
+            <button button (click)="uncheckFolder(52)">Uncheck Music folder</button>
+        </div>
+    </div>
+    <div class="tree-container">
+        <div class="tree-info">
+            <p class="tree-title">Programming languages tree</p>
+            <p class="notice">this tree is using a custom template</p>
+        </div>
+        <div class="tree-content">
+            <tree [tree]="icons"
+                  [settings]="settings"
+                  (nodeRemoved)="onNodeRemoved($event)"
+                  (nodeRenamed)="onNodeRenamed($event)"
+                  (nodeSelected)="onNodeSelected($event)"
+                  (nodeMoved)="onNodeMoved($event)"
+                  (nodeCreated)="onNodeCreated($event)">
+                <ng-template let-node>
+                    <i class="fa {{node.icon}}"></i>
+                    <span class="node-name" [innerHTML]="node.value"></span>
+                </ng-template>
+            </tree>
+        </div>
+    </div>
+    <div>
+        <div class="tree-info">
+            <p class="tree-title">Custom right click GUI tree</p>
+            <p class="notice">this tree is using a custom right click menu</p>
+        </div>
+        <div class="tree-content">
+            <tree [tree]="custom"
+                  (nodeSelected)="onNodeSelected($event)">
+            </tree>
+        </div> -->
