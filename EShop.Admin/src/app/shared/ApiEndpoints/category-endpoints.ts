@@ -9,4 +9,6 @@ export class CategoryEndpoints {
 
     getCategory: string = ApiConstant.baseUrl + "Category/GetAll";
     addCategory: string = ApiConstant.baseUrl + "Category/Create"
+    getCategoryById: string = ApiConstant.baseUrl + "Category/Get";
+    deleteCategory: string = ApiConstant.baseUrl + "Category/Delete";
 }

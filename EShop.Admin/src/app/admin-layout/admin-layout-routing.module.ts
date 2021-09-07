@@ -17,6 +17,7 @@ const routes: Routes = [
       { path: 'role-edit/:id', component: RoleAddComponent },
       { path: 'category-add', component: CategoryAddComponent },
       { path: 'categories', component: CategoryListComponent },
+      { path: 'category-edit/:id1/:id2', component: CategoryAddComponent },
     ]
   }
   // {

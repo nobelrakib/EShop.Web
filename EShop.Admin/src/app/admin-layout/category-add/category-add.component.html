@@ -25,19 +25,18 @@
                     <div class="col-md-2">
                         <label class="col-form-label">Parent category</label>
                     </div>
-                    <div class="col-md-6 tree-content">
-                        <tree #treeFonts [tree]="categoryModel" [settings]="{rootIsVisible: true}"
-                            (menuItemSelected)="onMenuItemSelected($event)"
-                            (nodeRemoved)="onNodeRemoved($event)" (nodeRenamed)="onNodeRenamed($event)"
-                            (nodeSelected)="onNodeSelected($event)" (nodeMoved)="onNodeMoved($event)"
-                            (nodeCreated)="onNodeCreated($event)" (nodeExpanded)="onNodeExpanded($event)"
-                            (nodeCollapsed)="onNodeCollapsed($event)">
+                    <div *ngIf="categoryModel.children.length>0" class="col-md-6 tree-content">
+                        <tree #treeFonts [tree]="categoryModel" [settings]="disabledCheckboxesSettings"
+                            (menuItemSelected)="onMenuItemSelected($event)" (nodeRemoved)="onNodeRemoved($event)"
+                            (nodeRenamed)="onNodeRenamed($event)" (nodeSelected)="onNodeSelected($event)"
+                            (nodeMoved)="onNodeMoved($event)" (nodeCreated)="onNodeCreated($event)"
+                            (nodeExpanded)="onNodeExpanded($event)" (nodeCollapsed)="onNodeCollapsed($event)">
                             <ng-template let-node>
                                 <i class="fa {{node.icon}}"></i>
                                 <span class="node-name" [innerHTML]="node.value"></span>
                             </ng-template>
                         </tree>
-                        
+
                     </div>
                 </div>
 
@@ -78,8 +77,6 @@
 
     </div>
 </div>
-
-
 
 
 

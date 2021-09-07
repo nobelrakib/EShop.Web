@@ -2,6 +2,9 @@ import { AppPermissions } from './../../shared/Constants/app-permissions';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { CategoryService } from '../services/category.service';
+import { Router } from '@angular/router';
+import { AlertService } from 'src/app/shared/Components/alert/alert.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-category-list',
@@ -9,13 +12,14 @@ import { CategoryService } from '../services/category.service';
   styleUrls: ['./category-list.component.scss']
 })
 export class CategoryListComponent implements OnInit {
-  public permissionNames= AppPermissions;
+  public permissionNames = AppPermissions;
   rows = [];
   lastIndex = 15;
   ColumnMode = ColumnMode;
 
 
-  constructor(private categoryService: CategoryService) {
+  constructor(private categoryService: CategoryService, private router: Router,
+    private alertService: AlertService, private toastrService: ToastrService) {
   }
   ngOnInit(): void {
     this.getCategories();
@@ -31,6 +35,22 @@ export class CategoryListComponent implements OnInit {
         return d;
       });
     })
+  }
+
+  editCategory(row: any) {
+    console.log(row);
+    this.router.navigate(['/admin/category-edit', row.id, row.parentCategoryId]);
+  }
+
+  removeCategory(id: number) {
+    this.alertService.confirm().then((confirmed) => {
+      if (confirmed) {
+        this.categoryService.deleteCategory(id).subscribe(() => {
+          this.toastrService.success('Deleted Successfully');
+          this.getCategories();
+        })
+      }
+    });
   }
 
   onTreeAction(event: any) {
