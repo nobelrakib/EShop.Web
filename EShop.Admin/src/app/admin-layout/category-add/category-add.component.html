@@ -10,9 +10,10 @@
 
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <label class="col-form-label">Category name</label>
+                        <!-- <label class="col-form-label">Category name</label>
                         <input class="form-control" formControlName="name" type="text"
-                            placeholder="Enter category name">
+                            placeholder="Enter category name"> -->
+                        <app-text-input [formControl]='form.controls["name"]' [label]='"name"'></app-text-input>
                     </div>
                     <div class="col-sm-6">
                         <label class="col-form-label">Description</label>

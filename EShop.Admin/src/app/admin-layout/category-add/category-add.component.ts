@@ -182,10 +182,6 @@ export class CategoryAddComponent implements OnInit, AfterViewInit {
     CategoryAddComponent.logEvent(e, 'Created');
   }
 
-
-
-
-
   public onNodeUnselected(e: NodeEvent): void {
     CategoryAddComponent.logEvent(e, 'Unselected');
   }

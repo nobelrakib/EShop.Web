@@ -1,3 +1,4 @@
+import { ICategory } from './../../shared/models/category';
 import { AppPermissions } from './../../shared/Constants/app-permissions';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ColumnMode } from '@swimlane/ngx-datatable';
@@ -5,6 +6,7 @@ import { CategoryService } from '../services/category.service';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/shared/Components/alert/alert.service';
 import { ToastrService } from 'ngx-toastr';
+import { IPagination } from 'src/app/shared/Models/pagination';
 
 @Component({
   selector: 'app-category-list',
@@ -14,28 +16,32 @@ import { ToastrService } from 'ngx-toastr';
 export class CategoryListComponent implements OnInit {
   public permissionNames = AppPermissions;
   rows = [];
+  categories: ICategory[] = []
   lastIndex = 15;
   ColumnMode = ColumnMode;
+  page: IPagination = {
+    pageNo: 1,
+    pageSize: 5,
+    total: 0
+  };
+
+  public readonly pageLimitOptions = [
+    { value: 5 },
+    { value: 10 },
+    { value: 25 },
+    { value: 50 },
+    { value: 100 },
+  ];
 
 
   constructor(private categoryService: CategoryService, private router: Router,
     private alertService: AlertService, private toastrService: ToastrService) {
   }
   ngOnInit(): void {
-    this.getCategories();
+    this.loadCategories();
   }
 
-  getCategories() {
-    this.categoryService.getCategories().subscribe((result) => {
-      this.rows = result.data;
 
-      this.rows = this.rows.map(d => {
-        d.treeStatus = 'collapsed';
-        d.parentId = null;
-        return d;
-      });
-    })
-  }
 
   editCategory(row: any) {
     console.log(row);
@@ -47,10 +53,34 @@ export class CategoryListComponent implements OnInit {
       if (confirmed) {
         this.categoryService.deleteCategory(id).subscribe(() => {
           this.toastrService.success('Deleted Successfully');
-          this.getCategories();
+          this.loadCategories();
         })
       }
     });
+  }
+
+  loadCategories() {
+    this.categoryService.getPaginatedCategory({
+      ...this.page
+    })
+      .subscribe(paginatedCategories => {
+        this.categories = paginatedCategories.data;
+        this.page.total = paginatedCategories.count;
+        this.rows = paginatedCategories.data;
+
+        this.rows = this.rows.map(d => {
+          d.treeStatus = 'collapsed';
+          d.parentId = null;
+          return d;
+        });
+
+        // console.log(this.roles);
+      })
+  }
+
+  paginate(pageInfo: any) {
+    this.page.pageNo = pageInfo.page;
+    this.loadCategories();
   }
 
   onTreeAction(event: any) {
@@ -94,4 +124,11 @@ export class CategoryListComponent implements OnInit {
       console.log(this.rows)
     }
   }
+
+  public onLimitChange(limit: number): void {
+    this.page.pageSize = limit;
+    this.loadCategories();
+  }
+
+
 }
