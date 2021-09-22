@@ -2,27 +2,33 @@ import { ICategory } from './../../shared/Models/category';
 import { ToastrService } from 'ngx-toastr';
 
 import { ControlValueAccessor, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ChildrenLoadingFunction, MenuItemSelectedEvent, Ng2TreeSettings, NodeEvent, NodeMenuItemAction, RenamableNode, TreeModel } from 'ng2-tree';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  ChildrenLoadingFunction, MenuItemSelectedEvent,
+  Ng2TreeSettings, NodeEvent, NodeExpandedEvent, NodeMenuItemAction, NodeSelectedEvent,
+  RenamableNode, Tree, TreeModel
+} from 'ng2-tree';
 import { CategoryService } from '../services/category.service';
 import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-category-add',
   templateUrl: './category-add.component.html',
   styleUrls: ['./category-add.component.scss']
 })
-export class CategoryAddComponent implements OnInit {
+export class CategoryAddComponent implements OnInit, AfterViewInit {
 
 
   categories: ICategory[] = [];
   form: FormGroup;
-
+  flag: boolean = true;
   public categoryModel: TreeModel = {
     value: 'Root category',
-    id: 0,
+    id: 1,
     settings: {
       'static': true,
+      'isCollapsedOnInit': false,
       'rightMenu': true,
       'leftMenu': true,
       'cssClasses': {
@@ -33,23 +39,28 @@ export class CategoryAddComponent implements OnInit {
       },
     },
     children: [],
-    loadChildren: (callback) => {
-      this.getAllCategories(callback);
-    }
+
+    // loadChildren: (callback) => {
+    //   this.getAllCategories(callback);
+
+    // }
   }
 
-  constructor(private formBuilder: FormBuilder, private toasterService: ToastrService,
-    private categoryService: CategoryService, private location:Location) { }
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute,
+    private toasterService: ToastrService,
+    private categoryService: CategoryService, private location: Location) { }
 
   public settings: Ng2TreeSettings = {
     rootIsVisible: false,
-    showCheckboxes: true
+    showCheckboxes: true,
+
   };
 
   public disabledCheckboxesSettings: Ng2TreeSettings = {
-    rootIsVisible: false,
-    showCheckboxes: true,
-    enableCheckboxes: false
+    rootIsVisible: true,
+    showCheckboxes: false,
+    enableCheckboxes: false,
+
   };
 
   @ViewChild('treeFonts') public treeFonts;
@@ -60,11 +71,54 @@ export class CategoryAddComponent implements OnInit {
 
   public ngOnInit(): void {
     this.form = this.formBuilder.group({
+      id: [0],
       name: ['', Validators.required],
       description: [''],
       parentCategoryId: ['', Validators.required]
     })
+    this.getAllCategories()
+    const categoryid = parseInt(this.route.snapshot.paramMap.get('id1'));
+    const categoryParentId = parseInt(this.route.snapshot.paramMap.get('id2'))
+    //debugger;
+    if (categoryid && categoryParentId) {
+      this.categoryService.getCategoriesById(categoryid).subscribe(data => {
+        //console.log("this is category " + data.name)
+        this.form.get('id').setValue(data.id);
+        this.form.get('name').setValue(data.name);
+        this.form.get('description').setValue(data.description);
+        this.form.get('parentCategoryId').setValue(data.parentCategoryId);
+
+      })
+    }
+
+
   }
+
+  ngAfterViewInit(): void {
+    console.log("hi  " + this.categoryModel)
+
+    // oopNodeController.select();
+  }
+
+  ngAfterViewChecked(): void {
+    // const oopNodeController = this.treeFonts.getControllerByNodeId(0);
+    const categoryid = parseInt(this.route.snapshot.paramMap.get('id1'));
+    const categoryParentId = parseInt(this.route.snapshot.paramMap.get('id2'))
+    // console.log(categoryid, categoryParentId)
+    if (this.categoryModel.children.length > 0 && categoryid && categoryParentId && this.flag) {
+      const oopNodeController = this.treeFonts.getControllerByNodeId(categoryParentId);
+      oopNodeController.select();
+      this.flag = false;
+
+
+
+
+    }
+
+    //console.log(oopNodeController);
+    // console.log(this.categoryModel)
+  }
+
 
   submit() {
     this.categoryService.addCategory(this.form.value).subscribe(res => {
@@ -73,7 +127,9 @@ export class CategoryAddComponent implements OnInit {
     })
   }
 
-  getAllCategories(callback) {
+
+
+  getAllCategories() {
     this.categoryService.getCategories().toPromise().then((result) => {
       this.categories = result.data;
       let treeModels: TreeModel[] = [];
@@ -85,9 +141,10 @@ export class CategoryAddComponent implements OnInit {
           children: this.getSubCategories(x.subCategories)
         });
       });
-      callback(treeModels);
+      this.categoryModel.children = treeModels;
+      console.log(this.categoryModel)
+      //  callback(treeModels);
     })
-
   }
 
   getSubCategories(subCategories: ICategory[]) {
@@ -105,6 +162,8 @@ export class CategoryAddComponent implements OnInit {
 
   public onNodeSelected(e: NodeEvent): void {
     this.form.get('parentCategoryId').setValue(e.node.id);
+    console.log(this.form.value);
+
   }
 
   public onNodeRemoved(e: NodeEvent): void {
@@ -133,6 +192,8 @@ export class CategoryAddComponent implements OnInit {
 
   public onNodeExpanded(e: NodeEvent): void {
     CategoryAddComponent.logEvent(e, 'Expanded');
+    console.log(e)
+
   }
 
   public onNodeCollapsed(e: NodeEvent): void {

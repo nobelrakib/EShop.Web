@@ -48,17 +48,17 @@ export class RoleComponent implements OnInit {
 
   columns: any[] = [];
 
-  countries: any[] = [{"id":1,"name":"Saudi Arabia"},{"id":2,"name":"Bangladesh"},{"id":3,"name":"Bahrain"}];
+  countries: any[] = [{ "id": 1, "name": "Saudi Arabia" }, { "id": 2, "name": "Bangladesh" }, { "id": 3, "name": "Bahrain" }];
 
   filterBySettings: IFilterBySetting[] = [
-      {labelText:"Product Name", inputType:'text',htmlElement: HtmlElementEnum.Input},
-      {labelText:"Category Name", inputType:'text',htmlElement: HtmlElementEnum.Input},
-      {labelText:"Mobile number", inputType:'number', htmlElement: HtmlElementEnum.Input},
-      {labelText:"Date Range", inputType:'daterange', htmlElement: HtmlElementEnum.Date},
-      {labelText:"Date", inputType:'date', htmlElement: HtmlElementEnum.Date},
-      {labelText:"Is it Delivered ?", htmlElement: HtmlElementEnum.Checkbox},
-      {labelText:"Single select dropdown", htmlElement: HtmlElementEnum.Dropdown, dropDownItems: this.countries},
-    {labelText:"Multi select dropdown", htmlElement: HtmlElementEnum.MultiSelectDropdown,dropDownItems: this.countries}
+    { labelText: "Product Name", inputType: 'text', htmlElement: HtmlElementEnum.Input },
+    { labelText: "Category Name", inputType: 'text', htmlElement: HtmlElementEnum.Input },
+    { labelText: "Mobile number", inputType: 'number', htmlElement: HtmlElementEnum.Input },
+    { labelText: "Date Range", inputType: 'daterange', htmlElement: HtmlElementEnum.Date },
+    { labelText: "Date", inputType: 'date', htmlElement: HtmlElementEnum.Date },
+    { labelText: "Is it Delivered ?", htmlElement: HtmlElementEnum.Checkbox },
+    { labelText: "Single select dropdown", htmlElement: HtmlElementEnum.Dropdown, dropDownItems: this.countries },
+    { labelText: "Multi select dropdown", htmlElement: HtmlElementEnum.MultiSelectDropdown, dropDownItems: this.countries }
   ];
 
   constructor(private roleService: RoleService,
@@ -74,11 +74,11 @@ export class RoleComponent implements OnInit {
     ]
   }
 
-  getSearchText(value){
+  getSearchText(value) {
     console.log(value);
   }
 
-  getFilterByResult(filterByResult){
+  getFilterByResult(filterByResult) {
     console.log(filterByResult);
   }
 
@@ -98,6 +98,7 @@ export class RoleComponent implements OnInit {
     this.loadRoles();
   }
   onPageSizeChanged(pageSize: number) {
+
     this.page.pageSize = pageSize;
     this.loadRoles();
   }
@@ -110,7 +111,7 @@ export class RoleComponent implements OnInit {
   removeRole(id: number) {
     console.log(id);
     this.alertService.confirm().then((confirmed) => {
-      if(confirmed){
+      if (confirmed) {
         this.roleService.deleteRole(id).subscribe(() => {
           this.toastrService.success('Deleted Successfully');
         })
