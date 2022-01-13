@@ -81,11 +81,11 @@ export class RoleComponent implements OnInit {
   buildForm() {
     this.filterByForm = this.fb.group({
       productName: new FormControl('', {
-        validators: [nameValidator('productName', 10, 20)],
+        validators: [nameValidator('Product Name', 10, 20)],
         updateOn: 'change',
       }),
       mobileNumber: new FormControl('', {
-        validators: [phoneValidator('mobileNumber', 10)],
+        validators: [phoneValidator('Mobile Number', 10)],
         updateOn: 'change',
       }),
       

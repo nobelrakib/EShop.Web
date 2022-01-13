@@ -29,7 +29,6 @@
                   <form [formGroup]="filterByForm" (ngSubmit)="onSubmit()">
                     <div class="row">
                       <div class="col-md-6" *ngFor="let column of filterByColumnSettings;">
-                        {{filterFormControls[column.formControlName].errors |json}} 
 
                         <div class="form-group row">
                           <label class="col-sm-4 col-form-label">{{column.labelText}}</label>
@@ -69,14 +68,13 @@
                               </ng-select>
                             </div>
 
-
-                           <div *ngIf="filterFormControls[column.formControlName].errors &&
+                            <span class="text-danger"
+                            *ngIf="filterFormControls[column.formControlName].errors &&
                             (filterFormControls[column.formControlName].dirty || 
-                            filterFormControls[column.formControlName].touched)" class="alert alert-danger">
-                              <span>
-                                {{filterFormControls[column.formControlName].errors.message}}
-                              </span>
-                            </div> 
+                            filterFormControls[column.formControlName].touched)">
+
+                               {{filterFormControls[column.formControlName].errors.message}}
+                            </span>
                           </div>
                         </div>
                       </div>
