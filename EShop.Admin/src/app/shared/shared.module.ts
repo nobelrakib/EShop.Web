@@ -36,7 +36,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     BreadcrumbComponent,
     MegaMenuComponent,
     FilterByComponent,
-    PermissionCheckPipe
+    PermissionCheckPipe,
+    
   ],
   imports: [
     FormsModule,

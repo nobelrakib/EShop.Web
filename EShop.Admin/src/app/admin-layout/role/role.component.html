@@ -1,5 +1,6 @@
 <app-breadcrumb [items]="['Access Control', 'Roles']"></app-breadcrumb>
 <app-filter-by [filterByColumnSettings]="filterBySettings"
+[filterByForm] = "filterByForm"
 (searchTextCallBackFn) = "getSearchText($event)"
 (filterByCallBackValue) = "getFilterByResult($event)"
 ></app-filter-by>
@@ -60,5 +61,4 @@
     </div>
   </div>
 </div>
-
 <!-- /.container-fluid -->

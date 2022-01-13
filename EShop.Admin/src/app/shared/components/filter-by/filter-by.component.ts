@@ -1,4 +1,4 @@
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { IFilterBySetting } from './../../models/IFilterBySetting';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HtmlElementEnum } from '../../enums/filterBySetting-enum';
@@ -13,7 +13,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 export class FilterByComponent implements OnInit {
 
   @Input() filterByColumnSettings: IFilterBySetting[] = [];
-  filterByForm: FormGroup;
+  @Input() filterByForm: FormGroup;
   searchText: string;
   @Output() searchTextCallBackFn: EventEmitter<string> = new EventEmitter<string>() || null;
   @Output() filterByCallBackValue: EventEmitter<any> = new EventEmitter<any>() || null;
@@ -26,7 +26,8 @@ export class FilterByComponent implements OnInit {
   }
   ngOnInit(): void {
     this.selectAllForMultiSelectDropdown();
-    this.buildForm();
+    // var a = this.filterByForm;
+    // debugger;
   }
 
   getSearchText(){
@@ -38,15 +39,6 @@ export class FilterByComponent implements OnInit {
     this.filterByCallBackValue.emit(this.filterByForm.value);
   }
 
-  buildForm() {
-    let group = {};
-    this.filterByColumnSettings.forEach(column => {
-      group[column.labelText] = new FormControl('', []);
-    });
-
-    this.filterByForm = new FormGroup(group);
-  }
-
   selectAllForMultiSelectDropdown() {
     this.filterByColumnSettings.map(element => {
       if (element.dropDownItems && element.htmlElement === HtmlElementEnum.MultiSelectDropdown) {
@@ -55,5 +47,7 @@ export class FilterByComponent implements OnInit {
     });
   }
 
-
+  get filterFormControls() {
+    return this.filterByForm.controls;
+  }
 }

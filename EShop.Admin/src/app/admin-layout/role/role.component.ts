@@ -9,6 +9,8 @@ import { IRoleWithPaginationInfo, IRole } from 'src/app/shared/Models/role';
 import { HtmlElementEnum } from 'src/app/shared/enums/filterBySetting-enum';
 import { AlertService } from 'src/app/shared/Components/alert/alert.service';
 import { RoleService } from '../services/role.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { dateValidator, emailValidator, nameValidator, phoneValidator} from 'src/app/shared/Validators/reactive-form-validator';
 @Component({
   selector: 'app-role',
   templateUrl: './role.component.html',
@@ -50,28 +52,45 @@ export class RoleComponent implements OnInit {
 
   countries: any[] = [{ "id": 1, "name": "Saudi Arabia" }, { "id": 2, "name": "Bangladesh" }, { "id": 3, "name": "Bahrain" }];
 
+  filterByForm: FormGroup;
   filterBySettings: IFilterBySetting[] = [
-    { labelText: "Product Name", inputType: 'text', htmlElement: HtmlElementEnum.Input },
-    { labelText: "Category Name", inputType: 'text', htmlElement: HtmlElementEnum.Input },
-    { labelText: "Mobile number", inputType: 'number', htmlElement: HtmlElementEnum.Input },
-    { labelText: "Date Range", inputType: 'daterange', htmlElement: HtmlElementEnum.Date },
-    { labelText: "Date", inputType: 'date', htmlElement: HtmlElementEnum.Date },
-    { labelText: "Is it Delivered ?", htmlElement: HtmlElementEnum.Checkbox },
-    { labelText: "Single select dropdown", htmlElement: HtmlElementEnum.Dropdown, dropDownItems: this.countries },
-    { labelText: "Multi select dropdown", htmlElement: HtmlElementEnum.MultiSelectDropdown, dropDownItems: this.countries }
+    { labelText: "Product Name", inputType: 'text', htmlElement: HtmlElementEnum.Input, formControlName: 'productName' },
+    { labelText: "Mobile number", inputType: 'number', htmlElement: HtmlElementEnum.Input, formControlName: 'mobileNumber' },
+    // { labelText: "Category Name", inputType: 'text', htmlElement: HtmlElementEnum.Input, formControl: {name: 'categoryName'}},
+    // { labelText: "Date Range", inputType: 'daterange', htmlElement: HtmlElementEnum.Date,formControl: {name: 'dateRange'} },
+    // { labelText: "Date", inputType: 'date', htmlElement: HtmlElementEnum.Date,formControl: {name: 'date'} },
+    // { labelText: "Is it Delivered ?", htmlElement: HtmlElementEnum.Checkbox,formControl: {name: 'isItDelivered'}},
+    // { labelText: "Single select dropdown", htmlElement: HtmlElementEnum.Dropdown, dropDownItems: this.countries,formControl: {name: 'singleSelectDropdown'}  },
+    // { labelText: "Multi select dropdown", htmlElement: HtmlElementEnum.MultiSelectDropdown, dropDownItems: this.countries,formControl: {name: 'multiSelectDropdown'} }
   ];
 
   constructor(private roleService: RoleService,
     private router: Router,
-    private route: ActivatedRoute, private alertService: AlertService, private toastrService: ToastrService) { }
+    private fb: FormBuilder, private alertService: AlertService, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
+    this.buildForm();
     this.loadRoles();
     this.columns = [
       { name: 'SL', width: 10, cellTemplate: this.slTemplate },
       { name: 'Name', prop: 'name' },
       { name: 'Actions', cellTemplate: this.statusTemplate },
     ]
+  }
+
+  buildForm() {
+    this.filterByForm = this.fb.group({
+      productName: new FormControl('', {
+        validators: [nameValidator('productName', 10, 20)],
+        updateOn: 'change',
+      }),
+      mobileNumber: new FormControl('', {
+        validators: [phoneValidator('mobileNumber', 10)],
+        updateOn: 'change',
+      }),
+      
+      // : new FormControl('', {validators: [Validators.required, Validators.minLength(3)], updateOn: 'change'})
+    });
   }
 
   getSearchText(value) {
