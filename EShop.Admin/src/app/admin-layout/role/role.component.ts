@@ -10,7 +10,7 @@ import { HtmlElementEnum } from 'src/app/shared/enums/filterBySetting-enum';
 import { AlertService } from 'src/app/shared/Components/alert/alert.service';
 import { RoleService } from '../services/role.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { dateValidator, emailValidator, nameValidator, phoneValidator} from 'src/app/shared/Validators/reactive-form-validator';
+import { CustomValidator} from 'src/app/shared/Validators/reactive-form-validator';
 @Component({
   selector: 'app-role',
   templateUrl: './role.component.html',
@@ -81,15 +81,13 @@ export class RoleComponent implements OnInit {
   buildForm() {
     this.filterByForm = this.fb.group({
       productName: new FormControl('', {
-        validators: [nameValidator('Product Name', 10, 20)],
+        validators: [  CustomValidator.lengthValidator('Product Name',5,10),CustomValidator.requiredValidator('Product Name'), ],
         updateOn: 'change',
       }),
       mobileNumber: new FormControl('', {
-        validators: [phoneValidator('Mobile Number', 10)],
+        validators: [CustomValidator.phoneValidator('Mobile Number', 10)],
         updateOn: 'change',
       }),
-      
-      // : new FormControl('', {validators: [Validators.required, Validators.minLength(3)], updateOn: 'change'})
     });
   }
 
