@@ -56,12 +56,12 @@ export class RoleComponent implements OnInit {
   filterBySettings: IFilterBySetting[] = [
     { labelText: "Product Name", inputType: 'text', htmlElement: HtmlElementEnum.Input, formControlName: 'productName' },
     { labelText: "Mobile number", inputType: 'number', htmlElement: HtmlElementEnum.Input, formControlName: 'mobileNumber' },
-    // { labelText: "Category Name", inputType: 'text', htmlElement: HtmlElementEnum.Input, formControl: {name: 'categoryName'}},
-    // { labelText: "Date Range", inputType: 'daterange', htmlElement: HtmlElementEnum.Date,formControl: {name: 'dateRange'} },
-    // { labelText: "Date", inputType: 'date', htmlElement: HtmlElementEnum.Date,formControl: {name: 'date'} },
-    // { labelText: "Is it Delivered ?", htmlElement: HtmlElementEnum.Checkbox,formControl: {name: 'isItDelivered'}},
-    // { labelText: "Single select dropdown", htmlElement: HtmlElementEnum.Dropdown, dropDownItems: this.countries,formControl: {name: 'singleSelectDropdown'}  },
-    // { labelText: "Multi select dropdown", htmlElement: HtmlElementEnum.MultiSelectDropdown, dropDownItems: this.countries,formControl: {name: 'multiSelectDropdown'} }
+    { labelText: "Multi select dropdown", htmlElement: HtmlElementEnum.MultiSelectDropdown, dropDownItems: this.countries,formControlName: 'multiSelectDropdown' }
+    // { labelText: "Category Name", inputType: 'text', htmlElement: HtmlElementEnum.Input, formControlName: 'categoryName' },
+    // { labelText: "Date Range", inputType: 'daterange', htmlElement: HtmlElementEnum.Date,formControlName: 'dateRange' },
+    // { labelText: "Date", inputType: 'date', htmlElement: HtmlElementEnum.Date,formControlName: 'date' },
+    // { labelText: "Is it Delivered ?", htmlElement: HtmlElementEnum.Checkbox,formControlName: 'isItDelivered'},
+    // { labelText: "Single select dropdown", htmlElement: HtmlElementEnum.Dropdown, dropDownItems: this.countries,formControlName: 'singleSelectDropdown' },
   ];
 
   constructor(private roleService: RoleService,
@@ -81,11 +81,17 @@ export class RoleComponent implements OnInit {
   buildForm() {
     this.filterByForm = this.fb.group({
       productName: new FormControl('', {
-        validators: [  CustomValidator.lengthValidator('Product Name',5,10),CustomValidator.requiredValidator('Product Name'), ],
+        validators: [  
+        CustomValidator.lengthValidator('Product Name',5,10),
+        CustomValidator.requiredValidator('Product Name'), ],
         updateOn: 'change',
       }),
       mobileNumber: new FormControl('', {
         validators: [CustomValidator.phoneValidator('Mobile Number', 10)],
+        updateOn: 'change',
+      }),
+      multiSelectDropdown: new FormControl('', {
+        validators: [CustomValidator.requiredValidator('Countries')],
         updateOn: 'change',
       }),
     });

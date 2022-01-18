@@ -6,5 +6,5 @@ export interface IFilterBySetting{
     htmlElement: HtmlElementEnum;
     inputType?: string;
     dropDownItems?: any[];
-    formControlName?: string;
+    formControlName: string;
 }
